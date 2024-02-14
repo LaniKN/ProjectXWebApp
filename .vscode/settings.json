@@ -1,0 +1,11 @@
+{
+    "sqltools.useNodeRuntime": true,
+    "sqltools.connections": [
+        {
+            "previewLimit": 200,
+            "driver": "SQLite",
+            "name": "Courses.db",
+            "database": "${workspaceFolder:ProjectXWebApp}/SqliteDB/database/courses.db"
+        }
+    ]
+}
