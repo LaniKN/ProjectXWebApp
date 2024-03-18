@@ -44,16 +44,7 @@ namespace CorusesDB.DapperDbConnection{
 
             async Task _initUsers(){
                 var sql = """
-                    CREATE TABLE IF NOT EXISTS 
-                    Users (
-                        Id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                        Title TEXT,
-                        FirstName TEXT,
-                        LastName TEXT,
-                        Email TEXT,
-                        Role INTEGER,
-                        PasswordHash TEXT
-                    );
+                    /*SQL Goes Here*/
                 """;
                 await connection.ExecuteAsync(sql);
             }
