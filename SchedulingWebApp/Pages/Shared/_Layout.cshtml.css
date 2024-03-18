@@ -1,6 +1,31 @@
 ﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+.navbar .sidebar {
+  height: 100%;
+  width: 100px;
+  position:fixed;
+  z-index:1;
+  top:0;
+  left:0;
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+/* .sidebar {
+
+} */
+
+@media screen and (max-height: 450px) {
+  .navbar {padding-top: 15px;}
+  .navbar a {font-size: 18px;}
+}
+
+#main {
+  transition: margin-left 0.5s;
+}
+
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;
