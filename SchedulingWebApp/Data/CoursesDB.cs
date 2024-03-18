@@ -7,9 +7,11 @@ namespace CoursesDB.model
 {
     public class Courses
     {
-        public int CustomerID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
+        public int CourseOID { get; set; }
+        public string CourseCode { get; set; }
+        public string Name { get; set; }
+        public string PreReqs { get; set; }
+
+        //See json file for courses for further obj.s
     }
 }
