@@ -37,6 +37,7 @@ namespace CorusesDB.DapperDbConnection{
             return new SqliteConnection("Data Source = Courses.db");
         }
 
+
         public async Task Init(){
         // create database tables if they don't exist
         using var connection = CreateConnection();
