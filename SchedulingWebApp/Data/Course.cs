@@ -8,7 +8,7 @@ namespace CoursesDB.model
 	public class Course
 	{
 		public int CourseOID { get; set; }
-		public string CourseCode { get; set; }
+		public string? CourseCode { get; set; }
 		public string? CourseName { get; set; }
 		public string? PreReqs { get; set; }
 		public string? Description {get; set;}
@@ -39,5 +39,6 @@ namespace CoursesDB.model
 		public string? Outcome20 {get; set;}
 		public bool isActive {get; set;}
 		public string? DegreeUsage {get; set;}
+		
 	}
 }

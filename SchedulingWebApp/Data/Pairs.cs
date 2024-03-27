@@ -5,8 +5,8 @@ using System.Web;
 
 namespace CoursesDB.model
 {
-	public class Major {
-		public int Id {get; set;}
+	public class Pairs {
 		public string? MajorName {get; set;}
+		public int CourseID {get; set;}
 	}
 }
