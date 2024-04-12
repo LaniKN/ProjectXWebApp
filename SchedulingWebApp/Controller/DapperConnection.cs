@@ -20,6 +20,4 @@ public class DapperConnection : DatabaseConnection {
 		return new SqliteConnection("Data Source = Courses.db");
 	}	
 
-
-	
 }

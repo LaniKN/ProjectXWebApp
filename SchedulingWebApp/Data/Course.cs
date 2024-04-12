@@ -2,16 +2,21 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Web;
 using SQLitePCL;
 
-namespace SchedulingWebApp.Data.Model
-{
+
+namespace SchedulingWebApp.Data.Model;
 	public class Course
 	{
+		[JsonPropertyName("CourseOID")]
 		public int CourseOID { get; set; }
+		[JsonPropertyName("CourseCode")]
 		public string? CourseCode { get; set; }
-		public string? CourseName { get; set; }
+		[JsonPropertyName("Name")]
+		public string? Name { get; set; }
+		[JsonPropertyName("PreReqs")]
 		public string? PreReqs { get; set; }
 		public string? Description {get; set;}
 		public int Credits {get; set;}
@@ -43,4 +48,3 @@ namespace SchedulingWebApp.Data.Model
 		public string? DegreeUsage {get; set;}
 		
 	}
-}
