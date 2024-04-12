@@ -9,17 +9,27 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using Microsoft.AspNetCore.Mvc;
-using SchedulingWebApp.Controller.Interfaces;
+using SchedulingWebApp.Controller.Interface;
 using Microsoft.Data.Sqlite;
 using System.Text.Json.Serialization;
 using Microsoft.VisualBasic;
 using SchedulingWebApp.Data.Model;
 using System.Text.Json;
 using System.Data.SqlTypes;
-
 namespace SchedulingWebApp.Controller.DapperDbConnection;
-    public class DataContext : HomeController
-    {
+
+    // public class HomeController {
+    //     public ActionResult CourseTree(){
+    // 		List<Courses> customers = new List<Courses>();
+    // 		// using (IDbConnection db = new SqlConnection(FiddleHelper.GetConnectionStringSqlServer()))
+    // 		// {
+    //     	// 	customers = db.Query<Customer>("Select * From Customers").ToList();
+    // 		// }
+    // 		return View(customers);
+    //     }
+    // }
+
+	 public class DataContext: DatabaseConnection {
         public readonly IConfiguration Configuration;
         private readonly FileStream fs = new FileStream("courseData.js", FileMode.Open);
         public DataContext(IConfiguration configuration)

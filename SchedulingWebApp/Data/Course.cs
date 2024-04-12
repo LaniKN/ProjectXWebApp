@@ -1,11 +1,13 @@
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
 using System.Web;
+using SQLitePCL;
+
 
 namespace SchedulingWebApp.Data.Model;
-
 	public class Course
 	{
 		[JsonPropertyName("CourseOID")]
@@ -18,7 +20,7 @@ namespace SchedulingWebApp.Data.Model;
 		public string? PreReqs { get; set; }
 		public string? Description {get; set;}
 		public int Credits {get; set;}
-		public string StudenLearningOUtcomes {get; set;}
+		public string StudenLearningOutcomes {get; set;}
 		// don't use Outcome. Use Outcome# for now
 		public List<string> Outcome = new List<string>();
 		//use these instead
