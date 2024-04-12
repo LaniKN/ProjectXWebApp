@@ -1,6 +1,6 @@
 using System.Data;
 
-namespace CoursesDB.Interfaces
+namespace SchedulingWebApp.Controller.Interfaces
 {
     public interface HomeController
     {

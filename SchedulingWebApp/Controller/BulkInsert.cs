@@ -9,22 +9,12 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using Microsoft.AspNetCore.Mvc;
-using CoursesDB.Interfaces;
+using SchedulingWebApp.Controller.Interfaces;
 using Microsoft.Data.Sqlite;
 
-namespace CorusesDB.DapperDbConnection{
-    // public class HomeController {
-    //     public ActionResult CourseTree(){
-    // 		List<Courses> customers = new List<Courses>();
-    // 		// using (IDbConnection db = new SqlConnection(FiddleHelper.GetConnectionStringSqlServer()))
-    // 		// {
-    //     	// 	customers = db.Query<Customer>("Select * From Customers").ToList();
-    // 		// }
-    // 		return View(customers);
-    //     }
-    // }
-
-	 public class DataContext: HomeController {
+namespace SchedulingWebApp.Controller.DapperDbConnection;
+    public class DataContext : HomeController
+    {
         public readonly IConfiguration Configuration;
 
         public DataContext(IConfiguration configuration)
@@ -37,21 +27,86 @@ namespace CorusesDB.DapperDbConnection{
             return new SqliteConnection("Data Source = Courses.db");
         }
 
-
-        public async Task Init(){
-        // create database tables if they don't exist
-        using var connection = CreateConnection();
-        await _initUsers();
-
-            async Task _initUsers(){
-                var sql = """
-                    /*SQL Goes Here*/
-                """;
-                await connection.ExecuteAsync(sql);
+        public void Init(string[] MajorName, int[] CourseID)
+        {
+            using (var connection = CreateConnection())
+            {
+                InitTables(connection);
+                InsertPair(connection, MajorName, CourseID);
+                UpdatePair(connection, MajorName, CourseID); 
+                DeletePair(connection, MajorName, CourseID); 
             }
-
         }
 
+        private void InitTables(IDbConnection connection)
+        {
+            var createPairsTableSql = @"
+                CREATE TABLE IF NOT EXISTS Pairs (
+                    MajorName TEXT NOT NULL,
+                    CourseID INTEGER,
+                    FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
+                );
+            ";
+            connection.Execute(createPairsTableSql);
+        }
+       
+        private void InsertPair(IDbConnection connection, string[] MajorName, int[] CourseID)
+        {
+            string insertQuery = @"
+                INSERT INTO Pairs (MajorName, CourseID)
+                VALUES (@MajorName, @CourseID);
+            ";
+
+            int rowsAffected = connection.Execute(insertQuery, new { MajorName = MajorName, CourseID = CourseID });
+
+            if (rowsAffected > 0)
+            {
+                Console.WriteLine("Pair inserted successfully!");
+            }
+            else
+            {
+                Console.WriteLine("Failed to insert pair.");
+            }
+        }
+
+        public void UpdatePair(IDbConnection connection, string[] MajorName, int[] CourseID)
+        {
+            string updateQuery = @"
+                UPDATE Pairs 
+                SET MajorName = @MajorName,
+                    CourseID = @CourseID
+                WHERE CourseId = @CourseId
+            ";
+
+            int rowsAffected = connection.Execute(updateQuery, new { MajorName = MajorName, CourseID = CourseID });
+
+            if (rowsAffected > 0)
+            {
+                Console.WriteLine("Pair updated successfully!");
+            }
+            else
+            {
+                Console.WriteLine("Failed to update pair.");
+            } 
+        }
+
+        public void DeletePair(IDbConnection connection, string[] MajorName, int[] CourseID)
+        {
+            string deleteQuery = @"
+                DELETE FROM Pairs 
+                WHERE CourseID = @CourseID ;
+            ";
+
+            int rowsAffected = connection.Execute(deleteQuery, new { CourseID = CourseID });
+
+            if (rowsAffected > 0)
+            {
+                Console.WriteLine("Pair Deleted successfully!");
+            }
+            else
+            {
+                Console.WriteLine("Failed to Delete pair.");
+            } 
+        }
     }
-}
 
