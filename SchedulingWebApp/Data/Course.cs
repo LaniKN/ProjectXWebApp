@@ -1,9 +1,11 @@
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using SQLitePCL;
 
-namespace CoursesDB.model
+namespace SchedulingWebApp.Data.Model
 {
 	public class Course
 	{
@@ -13,7 +15,7 @@ namespace CoursesDB.model
 		public string? PreReqs { get; set; }
 		public string? Description {get; set;}
 		public int Credits {get; set;}
-		public string StudenLearningOUtcomes {get; set;}
+		public string StudenLearningOutcomes {get; set;}
 		// don't use Outcome. Use Outcome# for now
 		public List<string> Outcome = new List<string>();
 		//use these instead

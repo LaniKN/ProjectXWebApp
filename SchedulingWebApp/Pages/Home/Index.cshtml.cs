@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace SchedulingWebApp.Pages;
+namespace SchedulingWebApp.Pages.Home;
 
 public class IndexModel : PageModel
 {

@@ -9,10 +9,10 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using Microsoft.AspNetCore.Mvc;
-using CoursesDB.Interfaces;
+using SchedulingWebApp.Controller.Interface;
 using Microsoft.Data.Sqlite;
 
-namespace CorusesDB.DapperDbConnection{
+namespace CorusesDB.Controller{
     // public class HomeController {
     //     public ActionResult CourseTree(){
     // 		List<Courses> customers = new List<Courses>();
@@ -24,7 +24,7 @@ namespace CorusesDB.DapperDbConnection{
     //     }
     // }
 
-	 public class DataContext: HomeController {
+	 public class DataContext: DatabaseConnection {
         public readonly IConfiguration Configuration;
 
         public DataContext(IConfiguration configuration)
