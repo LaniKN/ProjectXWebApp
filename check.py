@@ -26,3 +26,10 @@ for pair in courses_list:
 print("Dup Courses: ", dupCourses)
 print("Unique Courses:", len(uniqueCourses))
 print("Total Courses:", len(courses_list))
+
+for pair in courses_list:
+    for course in pair.items():
+        if course == "COMM4950":
+            print("Dupped")
+
+print("not Dupped")
