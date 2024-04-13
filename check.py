@@ -23,6 +23,6 @@ for pair in courses_list:
         else:
             dupCourses.append(course)
 
-print(dupCourses)
-print(len(uniqueCourses))
-print(len(courses_list))
+print("Dup Courses: ", dupCourses)
+print("Unique Courses:", len(uniqueCourses))
+print("Total Courses:", len(courses_list))
