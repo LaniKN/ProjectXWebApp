@@ -1,17 +1,39 @@
-﻿.containerPartial {
-  width:60vw;
-  height:45vh;
-  background-color:white;
+﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
 
+.navbar .sidebar {
+  height: 100%;
+  width: 100px;
+  position:fixed;
+  z-index:1;
+  top:0;
+  left:0;
+  overflow-x: hidden;
+  transition: 0.5s;
 }
 
+/* .sidebar {
+
+} */
+
 @media screen and (max-height: 450px) {
-  .navbar {padding-left: 15px;}
+  .navbar {padding-top: 15px;}
   .navbar a {font-size: 18px;}
 }
 
 #main {
   transition: margin-left 0.5s;
+}
+
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+a {
+  color: #0077cc;
 }
 
 .btn-primary {
@@ -20,7 +42,7 @@
   border-color: #1861ac;
 }
 
-.nav-link.active, .nav-pills .show > .nav-link {
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
@@ -43,9 +65,6 @@ button.accept-policy {
 }
 
 .footer {
-  border-style:solid;
-  border-color:red;
-  border-width:10px;
   position: absolute;
   bottom: 0;
   width: 100%;

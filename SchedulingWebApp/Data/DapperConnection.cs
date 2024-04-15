@@ -1,8 +1,9 @@
 using System.Data;
 
-namespace SchedulingWebApp.Controller.Interfaces;
-
+namespace CoursesDB.Interfaces
+{
     public interface HomeController
     {
         public IDbConnection CreateConnection();
     }
+}
