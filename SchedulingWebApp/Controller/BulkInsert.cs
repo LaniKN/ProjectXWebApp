@@ -28,56 +28,48 @@ namespace SchedulingWebApp.Controller.DapperDbConnection;
     // 		return View(customers);
     //     }
     // }
-
+	// Depreciated
 	 public class DataContext: DatabaseConnection {
         public readonly IConfiguration Configuration;
-        private readonly FileStream fs = new FileStream("courseData.js", FileMode.Open);
-        public DataContext(IConfiguration configuration)
+        private readonly string _testFile = "../SqliteDB/database/table_info/courseData.js";
+		  private readonly string _tableLocation;
+       
+		 public DataContext() {}
+		 
+		  public DataContext(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
         public IDbConnection CreateConnection()
         {
-            return new SqliteConnection("Data Source = Courses.db");
+            return new SqliteConnection("Data Source=../SqliteDB/database/courses.db");
         }
         public void insertAll(IDbConnection connection) {
-            var json = File.ReadAllText("courseData.js");
-            var data = JsonSerializer.Deserialize<List<Course>>(json);
-            if (data is null) {
-                return;
-            }
-            foreach (Course course in data) {
-                InsertCourse(connection, course);
-            }
+				
+				connection.Execute("DELETE FROM Course");
+            var json = File.ReadAllText(_testFile);
+				try {
+            	var data = JsonSerializer.Deserialize<List<Course>>(json);
+					connection.BulkInsert(data);
+
+
+				} catch (JsonException e) {
+					Console.WriteLine("Invalid Course: {0} \n halting additions",e.Message);
+					
+				} catch (SqliteException e) {
+					Console.WriteLine("SQL Rules violatd: {0}", e.Message);
+				};
         }
 
-        public void InsertCourse(IDbConnection connection, Course course) {
-            string sqlString = $"INSERT INTO COURSE(CourseOID, CourseCode, Name, PreReqs) VALUES(${course.CourseOID},${course.CourseCode}, ${course.Name}, ${course.PreReqs})";
-            
-            // SqliteCommand command = new SqliteCommand(sqlString,connection)
-            // check to finish up here. Josh sent you the "stuff"
-            int rowsAffected = connection.Execute(sqlString, new { MajorName = MajorName, CourseID = CourseID });
-
-            if (rowsAffected > 0)
-            {
-                Console.WriteLine("Pair inserted successfully!");
-            }
-            else
-            {
-                Console.WriteLine("Failed to insert pair.");
-            }
-        }
     
 
-        public void Init(string MajorName, int CourseID)
+        public void Init()
         {
             using (var connection = CreateConnection())
             {
-                InitTables(connection);
-                InsertPair(connection, MajorName, CourseID);
-                UpdatePair(connection, MajorName, CourseID); 
-                DeletePair(connection, MajorName, CourseID); 
+               InitTables(connection);
+					insertAll(connection);
             }
         }
 
@@ -89,6 +81,7 @@ namespace SchedulingWebApp.Controller.DapperDbConnection;
                     CourseID INTEGER,
                     FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
                 );
+			
             ";
             connection.Execute(createPairsTableSql);
         }
