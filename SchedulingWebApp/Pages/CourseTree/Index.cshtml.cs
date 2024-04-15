@@ -16,4 +16,8 @@ public class IndexModel : PageModel
     {
 
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> ParkerCourseTree
