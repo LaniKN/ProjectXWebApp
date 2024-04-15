@@ -1,14 +1,9 @@
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages().AddRazorPagesOptions(options =>  {
-        options.Conventions.AddPageRoute("/Home/Index", "");
-    });
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
-
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
