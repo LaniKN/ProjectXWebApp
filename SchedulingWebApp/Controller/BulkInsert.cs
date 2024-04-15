@@ -6,23 +6,11 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using Microsoft.AspNetCore.Mvc;
-using CoursesDB.Interfaces;
+using SchedulingWebApp.Controller.Interfaces;
 using Microsoft.Data.Sqlite;
 
-namespace CorusesDB.DapperDbConnection{
-    // public class HomeController {
-    //     public ActionResult CourseTree(){
-    // 		List<Courses> customers = new List<Courses>();
-    // 		// using (IDbConnection db = new SqlConnection(FiddleHelper.GetConnectionStringSqlServer()))
-    // 		// {
-    //     	// 	customers = db.Query<Customer>("Select * From Customers").ToList();
-    // 		// }
-    // 		return View(customers);
-    //     }
-    // }
+namespace SchedulingWebApp.Controller;
 
 	 public class DataContext: HomeController {
         public readonly IConfiguration Configuration;
@@ -53,5 +41,4 @@ namespace CorusesDB.DapperDbConnection{
         }
 
     }
-}
 

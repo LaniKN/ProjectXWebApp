@@ -1,7 +1,12 @@
-@model IEnumerable<CoursesDB.Courses>
-
+@page
 @{
-    ViewBag.Title="CourseTree";
+    ViewData["Title"] = "Course Tree";
 }
-
 @*Start here :D*@
+<head>
+    <link href="../Shared/_Layout.cshtml.css" rel="stylesheet">
+</head>
+<body>
+    <h1>@ViewData["Title"]</h1>
+    <p>Course tree page</p>
+</body>
