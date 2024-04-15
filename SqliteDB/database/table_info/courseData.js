@@ -30327,7 +30327,7 @@
         "DegreeProgramUsage:": "Organizational Leadership, B.S."
     },
     {
-        "CourseOID:": 25936,
+        "CourseOID:": 25935,
         "CourseCode:": "EET2960",
         "Name:": "Capstone Project",
         "PreReqs:": "EET2000, EET2050",
@@ -30360,7 +30360,7 @@
         "DegreeProgramUsage:": "Electrical Engineering Technology, A.S."
     },
     {
-        "CourseOID:": 25937,
+        "CourseOID:": 25936,
         "CourseCode:": "CYS5950",
         "Name:": "Curricular Practical Training",
         "PreReqs:": "Enrolled on a full-time basis at Indiana Tech for at least a full academic year with a GPA of 3.0 or higher,  Must meet eligibility requirements (see CPT Process Guide)",
@@ -30393,7 +30393,7 @@
         "DegreeProgramUsage:": "Cybersecurity, M.S."
     },
     {
-        "CourseOID:": 25938,
+        "CourseOID:": 25937,
         "CourseCode:": "IS5950",
         "Name:": "Curricular Practical Training",
         "PreReqs:": "Enrolled on a full-time basis at Indiana Tech for at least a full academic year with a GPA of 3.0 or higher, Must meet eligibility requirements (see CPT Process Guide)",
