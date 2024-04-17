@@ -1,9 +1,20 @@
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
+using SchedulingWebApp.Controller.BaseClass;
+using SchedulingWebApp.Controller.DapperDbConnection;
+
 var builder = WebApplication.CreateBuilder(args);
 
+
+
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages().AddRazorPagesOptions(options =>  {
+        options.Conventions.AddPageRoute("/Home/Index", "");
+		  
+    });
+
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

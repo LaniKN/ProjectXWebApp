@@ -4,7 +4,7 @@
         {
             "previewLimit": 200,
             "driver": "SQLite",
-            "name": "Courses.db",
+            "name": "courses.db",
             "database": "${workspaceFolder:ProjectXWebApp}/SqliteDB/database/courses.db"
         }
     ]
