@@ -1,22 +1,91 @@
-@page
-<<<<<<< HEAD
-@{
-    ViewData["Title"] = "Home page";
-}
-=======
 @model IndexModel
 @{
     ViewData["Title"] = "Course Tree";
 }
-<HTML>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+ul, #myUL {
+  list-style-type: none;
+}
+
+#myUL {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+}
+
+.box::before {
+  content: "\2610";
+  color: black;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.check-box::before {
+  content: "\2611"; 
+  color: dodgerblue;
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+</style>
+</head>
 <body>
 
-<div class="text-center">
-    <h1 class="display-4">CourseTree</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-<img src="~/img/4qpjpkkyhfw41.webp"></img>
+<h2>Course Tree</h2>
+<p>This tree will show you what classes you can take.</p>
+<p>Click on the box(es) to open or close the tree branches.</p>
 
-</div>
+<ul id="myUL">
+  <li><span class="box">Year 1</span>
+    <ul class="nested">
+      <li><span class="box">Math</span>
+        <ul class="nested">
+            <li>Pre Calclus</li>
+            <li>Calclus 1</li>
+        </ul>
+      <li><span class="box">Computer Science</span>
+        <ul class="nested">
+            <li>Intro to Computer Science</li>
+            <li>Computer Science 1</li>
+        </ul>
+      <li><span class="box">General Education</span>
+        <ul class="nested">
+            <li>Campus Experience</li>
+            <li>Group Dynamics</li>
+        </ul>
+      </li>  
+    </ul>
+  </li>
+</ul>
+
+<script>
+var toggler = document.getElementsByClassName("box");
+var i;
+
+for (i = 0; i < toggler.length; i++) {
+  toggler[i].addEventListener("click", function() {
+    this.parentElement.querySelector(".nested").classList.toggle("active");
+    this.classList.toggle("check-box");
+  });
+}
+</script>
+
 </body>
-</HTML>
->>>>>>> ParkerCourseTree
+
+</html>
