@@ -37,6 +37,8 @@ public class DatabaseController : DatabaseConnection {
 	public void InsertAll(List<Pairs> pairs) {
 		_connection.BulkInsert(pairs);
 	}
-
+	public void InsertAll(List<Prerequisites> precoreq) {
+		_connection.BulkInsert(precoreq);
+	}
 
 }
