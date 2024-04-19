@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using SchedulingWebApp.Controller.BaseClass;
-using SchedulingWebApp.Controller.DapperDbConnection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,9 +11,10 @@ builder.Services.AddRazorPages().AddRazorPagesOptions(options =>  {
 		  
     });
 
-
+builder.Services.AddScoped<DatabaseController>();
 var app = builder.Build();
 
+new DatabaseController().Initialize();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
