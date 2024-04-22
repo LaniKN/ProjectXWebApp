@@ -59,6 +59,13 @@ public class DatabaseController : DatabaseConnection {
 		?? new List<T>();
 	}
 
+	public async Task<List<Major>> GetMajorsListAsync() {
+		var multi = await _connection.QueryMultipleAsync(@"SELECT * 
+		FROM Major");
+		var list_multi = multi.Read<Major>().ToList();
+		return list_multi;
+	}
+
 
 	// keep using this for now till I figure out a better way
 	public async Task<T> RetunObjectSingle<T>(string sqlString) =>

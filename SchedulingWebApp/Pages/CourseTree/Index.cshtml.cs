@@ -9,6 +9,11 @@ public class IndexModel(ILogger<IndexModel> logger, DatabaseController databaseC
 {
 	private readonly ILogger<IndexModel> _logger = logger;
 	private readonly DatabaseController _databaseController = databaseController;
+	public string displayElementTest() {
+		var test = _databaseController.GetMajorsListAsync();
+		test.Wait();
+		return test.Result[0].major;
+	}
 	public void OnGet()
     {
 
