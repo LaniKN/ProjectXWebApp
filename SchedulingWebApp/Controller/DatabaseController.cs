@@ -32,7 +32,7 @@ public class DatabaseController : DatabaseConnection {
 	}
 
 	//Overloads for converting each object type into a json string
-	//May be converted to  
+	//May be converted to something else
 
 	public string ReturnJSON(Course course)	{
 		return JsonSerializer.Serialize<Course>(course);
@@ -56,6 +56,7 @@ public class DatabaseController : DatabaseConnection {
 
 	public async Task<T> RetunObjectSingle<T>(string sqlString) =>
 		await _connection.QuerySingleAsync<T>(sqlString);
+
 
 	public void InsertAll(List<Course> courses) {
 		_connection.Execute("DELETE FROM COURSE");
