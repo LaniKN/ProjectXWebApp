@@ -16,21 +16,23 @@ namespace SchedulingWebApp.Data.Model;
 		[JsonPropertyName("CourseOID")] [JsonRequired]
 		public int CourseID { get; set; }
 		[JsonPropertyName("CourseCode")]
-		public string CourseCode { get; set; }
+		public string? CourseCode { get; set; }
 		[JsonPropertyName("Name")]
 		public string? CourseName { get; set; }
 		[JsonPropertyName("PreReqs")]
 		public string? PreReq { get; set; }
 		[JsonPropertyName("CoReqs")]
-		public string CoReq { get; set; }
+		public string? CoReq { get; set; }
 		[JsonPropertyName("PreCoReqs")]
-		public string PreCoReqs { get; set; }
+		public string? PreCoReqs { get; set; }
 		[JsonPropertyName("Description")]
-		public string CourseDescription { get; set; }
+		public string? CourseDescription { get; set; }
 		[JsonPropertyName("Credits")]
-		public string Credits { get; set; }
+		public string? Credits { get; set; }
 		[JsonPropertyName("StudentLearningOutcomes")]
-		public string StudentLearningOutcomes {get; set;}
+		public string? StudentLearningOutcomes {get; set;}
+
+		
 		[JsonPropertyName("Outcome1")]
 		public string? Outcome1 {get; set;}
 		[JsonPropertyName("Outcome2")]

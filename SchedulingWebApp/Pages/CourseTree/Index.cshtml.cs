@@ -9,19 +9,6 @@ public class IndexModel(ILogger<IndexModel> logger, DatabaseController databaseC
 {
 	private readonly ILogger<IndexModel> _logger = logger;
 	private readonly DatabaseController _databaseController = databaseController;
-	public async Task<Course> GetThing() {
-		var thing  =  _databaseController.RetunObjectSingle<Course>(@"
-		SELECT *
-		FROM Course
-		WHERE CourseID ='24850';
-		");
-
-		return await thing;
-		
-	}
-	public int GetThingId(Course course) {
-		return course.CourseID;
-	}
 	public void OnGet()
     {
 
