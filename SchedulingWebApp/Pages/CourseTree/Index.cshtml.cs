@@ -1,18 +1,22 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using SchedulingWebApp.Controller.BaseClass;
+using SchedulingWebApp.Controller.API;
 using SchedulingWebApp.Data.Model;
 
 namespace SchedulingWebApp.Pages.CourseTree;
 
-public class IndexModel(ILogger<IndexModel> logger, DatabaseController databaseController) : PageModel
+public class IndexModel(ILogger<IndexModel> logger, DatabaseAPI databaseAPI) : PageModel
 {
 	private readonly ILogger<IndexModel> _logger = logger;
-	private readonly DatabaseController _databaseController = databaseController;
-	public string displayElementTest() {
-		var test = _databaseController.GetMajorsListAsync();
+	private readonly DatabaseAPI _api = databaseAPI;
+	public string returnCourseTest(int courseID) {
+		return _api.FetchCourse(courseID).CourseCode ?? "";
+	}
+	// possible way to use async functions;
+	public string returnMajorTest() {
+		var test = _api.getMajorsAsync();
 		test.Wait();
-		return test.Result[0].major;
+		return (test.Result)[3];
 	}
 	public void OnGet()
     {

@@ -29,7 +29,7 @@ namespace SchedulingWebApp.Data.Model;
 		public string? CourseDescription { get; set; }
 		[JsonPropertyName("Credits")]
 		public string? Credits { get; set; }
-		[JsonPropertyName("StudentLearningOutcomes")]
+		[JsonPropertyName("Student Learning Outcomes")]
 		public string? StudentLearningOutcomes {get; set;}
 
 		
