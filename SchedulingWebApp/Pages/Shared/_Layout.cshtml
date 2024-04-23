@@ -4,15 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SchedulingWebApp</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> 
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/SchedulingWebApp.styles.css" asp-append-version="true" />
+    
 </head>
 <body>
-    <div class="sideBar">
-        <nav class="navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-right box-shadow mb-3">
+    <div class="layout">
+        <nav class=" navbar contain border-right">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">SchedulingWebApp</a>
+                <a href="../Home/Index"><img class="logo" src="~/images/ITShielfTransparent.png"/></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon">  </span>
@@ -20,41 +20,88 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            <a class="nav-link" href="../Home/Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/SchedulingWebApp/pages/CoureTree">Course Tree</a>
+                            <a class="nav-link" href="../CourseTree/Index">Course Tree</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/SchedulingWebApp"></a>
+                            <a class="nav-link text-dark" onclick=openMajorsLayout()>Major</a>
+                        </li>
+                        <li class="na-item">
+                            <a class="nav-link text-dark" onclick=openCoursesLayout()>Courses</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            <a class="nav-link" href="../Privacy">Privacy</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
-    </div>
 
-    @* Content *@
-    <div class="container">
-        <main role="main" class="pb-3">
+        @* Content *@
+        <div class="main contain">
+            <div class="overlay" id="majorsPartial" style="display:none;">
+            </div>
+            <div class="overlay" id="coursesPartial" style="display:none;">
+            </div>
             @RenderBody()
-        </main>
+        </div>
+
     </div>
 
     @* Footer  *@
-    <footer class="border-top footer text-muted">
-        <div class="container">
+    <div class="border-top footer ">
+        <div>
             &copy; 2024 - SchedulingWebApp - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
-    </footer>
+    </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundlef.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
+
+@section scripts {
+    <script >
+        var majorsOpen = false;
+        var coursesOpen = false;
+
+        function openMajorsLayout() {
+            majorsOpen = true;
+            $('#majorsPartial').show();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("_MajorsPartial","Shared")',
+                data: majorsOpen,
+                error: function(e) {
+                    console.log(e)
+                },
+                success: function(res) {
+                    $("#majorsPartial").html(res)
+                }
+            });
+        }
+
+        function openCoursesLayout() {
+            coursesOpen = true;
+            $('#coursesPartial').show();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("_CoursesPartial","Shared")',
+                data: majorsOpen,
+                error: function(e) {
+                    console.log(e)
+                },
+                success: function(res) {
+                    $("#majorsPartial").html(res)
+                }
+            });
+
+        }
+    </script>
+}
+
 </body>
 </html>
