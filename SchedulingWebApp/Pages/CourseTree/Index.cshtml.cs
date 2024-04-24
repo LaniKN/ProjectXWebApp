@@ -23,4 +23,3 @@ public class IndexModel(ILogger<IndexModel> logger, DatabaseAPI databaseAPI) : P
 
     }
 }
-}

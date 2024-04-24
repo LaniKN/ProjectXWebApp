@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.Common;
 using System.Text.Json;
 using Dapper;
+using System.Linq;
 using Microsoft.Data.Sqlite;
 using SchedulingWebApp.Controller.Connection;
 using SchedulingWebApp.Data.Model;
@@ -29,7 +30,7 @@ public class DBController : DatabaseConnection {
 	private string BulkToJSON<T>(List<T> test)	{
 		return JsonSerializer.Serialize<List<T>>(test);
 	}
-
+	// TODO: set it up to have bulk insert return number of modifications made
 	private void InsertBulk<T>(List<T> inputList) {
 		 _connection.BulkInsert<T>(inputList);
 		Console.WriteLine($"modified table {typeof(T).ToString()}");
@@ -49,11 +50,13 @@ public class DBController : DatabaseConnection {
 	}
 	// TODO: remove once you figure out why ClearTable(string) isn't working
 	private void ClearAllTables() {
+		var num3 = _connection.Execute("DELETE FROM Pairs");
 		var num = _connection.Execute("DELETE FROM Course");
 		var num2 = _connection.Execute("DELETE FROM Major");
 
 		Console.WriteLine($"{num} rows deleted from Table Course");
 		Console.WriteLine($"{num2} rows deleted from Table Major");
+		Console.WriteLine($"{num3} rows deleted from Table Pairs");
 	}
 
 
@@ -67,6 +70,7 @@ public class DBController : DatabaseConnection {
 		var tasksInProgress = new List<Task> {majorTable, courseTable, coursematchTable, pairsTable, prereqsTable};
 		await Task.WhenAll(tasksInProgress);
 	}
+
 
 
 	private async Task createMajorTable() {
@@ -136,9 +140,10 @@ public class DBController : DatabaseConnection {
 		var sql = @"
 				CREATE TABLE IF NOT EXISTS 
 				Pairs (
-					MajorID INT(7) NOT NULL,
+					MajorID INT(7),
 					CourseID INT(10),
-					FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
+					FOREIGN KEY (CourseID) REFERENCES Course(CourseID),
+					FOREIGN KEY (MajorID) REFERENCES Major(Id)
 					);	
             ";
 			await _connection.ExecuteAsync(sql);
@@ -155,20 +160,34 @@ public class DBController : DatabaseConnection {
             ";
 			await _connection.ExecuteAsync(sql);
 	}	
-	
+	//TODO: check to see if the generated values are correct
+	private List<Pairs> generatePairsValues(List<Major> majors, List<Course> courses) {
+		List<Pairs> pairs = new ();
+		foreach (var element in courses)	{
+			majors.Where(m =>
+			element.DegreeUsage != null
+			?element.DegreeUsage.Contains(m.major)
+			: false).ToList().ForEach(m => pairs.Add(new Pairs {MajorID = m.Id, CourseID = element.CourseID }));
+		}
+		return pairs;
+	}
+
 	public async Task onInitialize() {
 		var settingUp = TablesExist();
 		var courseJson = ReadJSON<Course>(ReadInFile("courseData.js"));
 		var majorJson = ReadJSON<Major>(ReadInFile("majorData.js"));
+		var generatedPairs = generatePairsValues(majorJson,courseJson);
 		await settingUp.ContinueWith((finishSetup) => {
+		ClearAllTables();
 		try {
-			ClearAllTables();
 			InsertBulk<Course>(courseJson);
 			InsertBulk<Major>(majorJson);
+			InsertBulk<Pairs>(generatedPairs);
+
 		} catch (SqliteException e) {
 			if(e.SqliteErrorCode != 19) {
-				throw new Exception($"Unhandled Exception! {e.Message}");
-			} else {
+					throw;
+				} else {
 				Console.WriteLine($@"Non-Fatal Exception Caught! SQL code 19: SQL constraint violation.");
 			}
 		}
