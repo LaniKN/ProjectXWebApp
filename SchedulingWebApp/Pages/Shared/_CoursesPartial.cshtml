@@ -1,12 +1,53 @@
-@model SchedulingWebApp.Data.model.Course
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-</head>
-<body>
+@model SchedulingWebApp.Data.Model.CourseViewModel
+
+
+<div class="modal" id="coursesModal" role="dialog">
     <div class="partialBody">
-        
+        <div>
+            <h1 class="modal-title">Select Courses:</h1>
+            <button id="coursesClosePopUp" type="button" class="closeModal" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p>Please Select all courses that you have already taken and/or have credits for:</p>
+            <div class="containSelect">
+                @if (Model.Courses != null){
+                    <div class="courses">
+                        <ul>
+                            @foreach (var course in Model.Courses){
+                                <li>
+                                    <input type="checkbox" id="@Model.Courses<course>.CourseCode" asp-for="@Model.Taken" value="@Model.Taken" checked="@Model.Taken" />
+                                    <label for="@Model.Courses<course>.CourseCode">@Model.Course.CourseCode , @Model.Course.Name </label>
+                                </li>
+                            }
+                        </ul>
+                        <p>This is working! Course is not null</p>
+                    </div>
+                } else {
+                    <p>Uh Oh! You haven't selected your major! Please select a major!</p>
+                };
+            </div>
+            <button id="coursesSave" class="btn">Save</button>
+        </div>
     </div>
-</body>
+</div>
+
+<script>
+    $('#coursesClosePopUp').click(function(){
+        $('#coursesPartial').hide();
+    })
+</script>
+
+    @*
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"> </script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#coursesPopUp").click(function() {
+                $("coursesPartial").modal('show');
+            });
+            $("#coursesClosePopUp").click(function(){
+                $("coursesPartial").modal('hide');
+            });
+        });
+    </script>
+    *@

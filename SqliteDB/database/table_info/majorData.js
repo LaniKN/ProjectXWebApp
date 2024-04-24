@@ -1,271 +1,203 @@
 
 [
     {
-      "Major": " Administration",
+      "Major": "Accounting",
       "ID": 1
     },
     {
-      "Major": " Applied Exercise",
+      "Major": "Addictions Counseling",
       "ID": 2
     },
     {
-      "Major": " Biomedical",
+      "Major": "Biology",
       "ID": 3
     },
     {
-      "Major": " Broadcasting",
+      "Major": "Business Administration - Business Communication Concentration",
       "ID": 4
     },
     {
-      "Major": " Business Administration",
+      "Major": "Business Administration - Construction Management Concentration",
       "ID": 5
     },
     {
-      "Major": " Business Communication",
+      "Major": "Business Administration - Entrepreneurial Studies Concentration",
       "ID": 6
     },
     {
-      "Major": " Cellular",
+      "Major": "Business Administration - Financial Services Concentration",
       "ID": 7
     },
     {
-      "Major": " Chemistry",
+      "Major": "Business Administration - Health Care Administration Concentration",
       "ID": 8
     },
     {
-      "Major": " Child",
+      "Major": "Business Administration - Human Resources Concentration",
       "ID": 9
     },
     {
-      "Major": " Communication",
+      "Major": "Business Administration - Management Concentration",
       "ID": 10
     },
     {
-      "Major": " Computer",
+      "Major": "Business Administration - Risk Management Concentration",
       "ID": 11
     },
     {
-      "Major": " Computer Engineering",
+      "Major": "Business Administration - Supply Chain Management Concentration",
       "ID": 12
     },
     {
-      "Major": " Computer Science",
+      "Major": "Child Development",
       "ID": 13
     },
     {
-      "Major": " Conditioning",
+      "Major": "Communication - Graphic Design Concentration",
       "ID": 14
     },
     {
-      "Major": " Conflict",
+      "Major": "Communication - Journalism & Broadcasting Concentration",
       "ID": 15
     },
     {
-      "Major": " Construction Management",
+      "Major": "Communication - Sports Media Concentration",
       "ID": 16
     },
     {
-      "Major": " Criminal",
+      "Major": "Computer Engineering",
       "ID": 17
     },
     {
-      "Major": " Criminal Justice",
+      "Major": "Computer Science",
       "ID": 18
     },
     {
-      "Major": " Cybersecurity",
+      "Major": "Criminal Justic - Rehabilitative Services Concentration",
       "ID": 19
     },
     {
-      "Major": " Data Analytics",
+      "Major": "Criminal Justice",
       "ID": 20
     },
     {
-      "Major": " Defense Financial",
+      "Major": "Cybersecurity",
       "ID": 21
     },
     {
-      "Major": " Electrical",
+      "Major": "Electrical Engineering",
       "ID": 22
     },
     {
-      "Major": " Electrical Engineering",
+      "Major": "Emergency Response Management",
       "ID": 23
     },
     {
-      "Major": " Emergency Response",
+      "Major": "Engineering - Computer Engineering Concentration",
       "ID": 24
     },
     {
-      "Major": " Engineering",
+      "Major": "Engineering - Electrical Engineering Concentration",
       "ID": 25
     },
     {
-      "Major": " Entrepreneurial Studies",
+      "Major": "Engineering - Industrial and Manufacturing Engineering Concentration",
       "ID": 26
     },
     {
-      "Major": " Exercise Science",
+      "Major": "Engineering - Mechanical Engineering Concentration",
       "ID": 27
     },
     {
-      "Major": " Financial Services",
+      "Major": "Exercise Science - Applied Exercise Physiology Concentration",
       "ID": 28
     },
     {
-      "Major": " Forensic",
+      "Major": "Exercise Science - Pre-Professional Concentration",
       "ID": 29
     },
     {
-      "Major": " General",
+      "Major": "Exercise Science - Strength & Conditioning Concentration",
       "ID": 30
     },
     {
-      "Major": " Graphic Design",
+      "Major": "Forensic Science",
       "ID": 31
     },
     {
-      "Major": " Health",
+      "Major": "General Studies",
       "ID": 32
     },
     {
-      "Major": " Health Care",
+      "Major": "Health Information Management",
       "ID": 33
     },
     {
-      "Major": " Health Information",
+      "Major": "Health Science - Pre-Professional Concentration",
       "ID": 34
     },
     {
-      "Major": " Health Science",
+      "Major": "Health Science",
       "ID": 35
     },
     {
-      "Major": " Human",
+      "Major": "Human Services",
       "ID": 36
     },
     {
-      "Major": " Human Performance",
+      "Major": "Industrial and Manufacturing Engineering",
       "ID": 37
     },
     {
-      "Major": " Human Resources",
+      "Major": "Information Systems",
       "ID": 38
     },
     {
-      "Major": " Industrial",
+      "Major": "Marketing",
       "ID": 39
     },
     {
-      "Major": " Information",
+      "Major": "Mechanical Engineering Technology",
       "ID": 40
     },
     {
-      "Major": " Information Systems",
+      "Major": "Mechanical Engineering",
       "ID": 41
     },
     {
-      "Major": " Journalism",
+      "Major": "Mechatronics and Robotics Engineering",
       "ID": 42
     },
     {
-      "Major": " Legal",
+      "Major": "Network Engineering",
       "ID": 43
     },
     {
-      "Major": " Management",
+      "Major": "Organizational Leadership",
       "ID": 44
     },
     {
-      "Major": " Manufacturing",
+      "Major": "Psychology",
       "ID": 45
     },
     {
-      "Major": " Manufacturing Engineering",
+      "Major": "Recreation Therapy",
       "ID": 46
     },
     {
-      "Major": " Marketing",
+      "Major": "Software Engineering",
       "ID": 47
     },
     {
-      "Major": " Mechanical",
+      "Major": "Sport Management",
       "ID": 48
     },
     {
-      "Major": " Mechanical Engineering",
+      "Major": "Supply Chain Management - Data Analytics Concentration",
       "ID": 49
     },
     {
-      "Major": " Mechatronics",
+      "Major": "Supply Chain Management - Quality Management Concentration",
       "ID": 50
-    },
-    {
-      "Major": " Medical",
-      "ID": 51
-    },
-    {
-      "Major": " Molecular Biology",
-      "ID": 52
-    },
-    {
-      "Major": " Network",
-      "ID": 53
-    },
-    {
-      "Major": " Physiology",
-      "ID": 54
-    },
-    {
-      "Major": " Production Management",
-      "ID": 55
-    },
-    {
-      "Major": " Professional",
-      "ID": 56
-    },
-    {
-      "Major": " Quality Management",
-      "ID": 57
-    },
-    {
-      "Major": " Recreation",
-      "ID": 58
-    },
-    {
-      "Major": " Rehabilitative Services",
-      "ID": 59
-    },
-    {
-      "Major": " Risk Management",
-      "ID": 60
-    },
-    {
-      "Major": " Robotics",
-      "ID": 61
-    },
-    {
-      "Major": " Software",
-      "ID": 62
-    },
-    {
-      "Major": " Sport",
-      "ID": 63
-    },
-    {
-      "Major": " Sports Media",
-      "ID": 64
-    },
-    {
-      "Major": " Strength",
-      "ID": 65
-    },
-    {
-      "Major": " Supply Chain",
-      "ID": 66
-    },
-    {
-      "Major": "Accounting",
-      "ID": 67
     }
   ]
