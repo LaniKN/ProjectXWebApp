@@ -17,7 +17,6 @@ html {
 }
 
 
-
 .layout {
   height:90vh;
   display:flex;
@@ -40,13 +39,6 @@ html {
   vertical-align:middle;
   width: 75px;
   height: 75px;
-}
-
-.containerPartial {
-  width:60vw;
-  height:45vh;
-  background-color:white;
-
 }
 
 
@@ -98,7 +90,7 @@ button.accept-policy {
   bottom: 0;
   width: 100%;
   white-space: nowrap;
-  line-height: 60px;
+  line-height: 50px;
   height:10vh;
   text-align:center;
 }
@@ -108,7 +100,10 @@ button.accept-policy {
 
 .partialBody {
   background-color:white;
-
+  width:60vw;
+  height:45vh;
+  display:flex;
+  flex-direction:row;
 }
 
 .overlay {

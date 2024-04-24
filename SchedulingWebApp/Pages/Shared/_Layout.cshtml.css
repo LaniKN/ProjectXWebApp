@@ -1,10 +1,4 @@
-﻿.containerPartial {
-  width:60vw;
-  height:45vh;
-  background-color:white;
-
-}
-
+﻿
 @media screen and (max-height: 450px) {
   .navbar {padding-left: 15px;}
   .navbar a {font-size: 18px;}
