@@ -1,13 +1,19 @@
-﻿<!DOCTYPE html>
+﻿@using SchedulingWebApp.Controller
+
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - SchedulingWebApp</title>
+    <title>@ViewData["Title"] - SchedulingApplication</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> 
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     
 </head>
+
 <body>
     <div class="layout">
         <nav class=" navbar contain border-right">
@@ -26,10 +32,11 @@
                             <a class="nav-link" href="../CourseTree/Index">Course Tree</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" onclick=openMajorsLayout()>Major</a>
+                            <button class="nav-btn" onclick="openMajorsLayout()">Major</button>
                         </li>
                         <li class="na-item">
-                            <a class="nav-link text-dark" onclick=openCoursesLayout()>Courses</a>
+                            <button id="coursesPopUp" class="nav-btn" onclick="OpenCoursesLayout()">Courses</button>
+                            @* <a class="nav-link" id="coursesModal" href="/" onclick="OpenCoursesLayout(event)">Courses</a> *@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../Privacy">Privacy</a>
@@ -41,9 +48,9 @@
 
         @* Content *@
         <div class="main contain">
-            <div class="overlay" id="majorsPartial" style="display:none;">
+            <div class="overlay" id="majorsPartial" style="display:none">
             </div>
-            <div class="overlay" id="coursesPartial" style="display:none;">
+            <div class="overlay" id="coursesPartial" style="display:none">
             </div>
             @RenderBody()
         </div>
@@ -57,14 +64,10 @@
         </div>
     </div>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundlef.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 
-@section scripts {
-    <script >
+    <script>
         var majorsOpen = false;
         var coursesOpen = false;
 
@@ -73,7 +76,7 @@
             $('#majorsPartial').show();
             $.ajax({
                 type: "POST",
-                url: '@Url.Action("_MajorsPartial","Shared")',
+                url: '@Url.Action("_MajorsPartial","CPController")',
                 data: majorsOpen,
                 error: function(e) {
                     console.log(e)
@@ -84,24 +87,35 @@
             });
         }
 
-        function openCoursesLayout() {
-            coursesOpen = true;
-            $('#coursesPartial').show();
+        function OpenCoursesLayout(e) {
+            console.log('button clicked');
+            var url = '/Index?handler=CoursesModalPartial';
+            $.get(url).done(function(data) {
+                //append HTML to doc, find modal and show
+                $document.body.append(data).find('.modal').modal('show');
+            });
+        }
+
+            /*
+            e.preventDefault();
+            var url = "/SchedulingWebApp/Pages/Shared/CoursesPartial.cshtml";
             $.ajax({
-                type: "POST",
-                url: '@Url.Action("_CoursesPartial","Shared")',
-                data: majorsOpen,
+                type: "GET",
+                url: url,
                 error: function(e) {
                     console.log(e)
                 },
-                success: function(res) {
-                    $("#majorsPartial").html(res)
+                success: function(data) {
+                    console.log("Partial Load!");
+                    $('#coursesPartial').html(data);
+                    $("#coursesModal").modal('show');
                 }
             });
-
-        }
+            */
+            
+    
     </script>
-}
+
 
 </body>
 </html>
