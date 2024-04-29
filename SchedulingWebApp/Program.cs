@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
-using SchedulingWebApp.Controller.API;
-using SchedulingWebApp.Controller.Database;
+using SchedulingWebApp.Controllers.API;
+using SchedulingWebApp.Controllers.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 Task noTouch = new DBController().onInitialize();

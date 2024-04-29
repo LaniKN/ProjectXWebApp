@@ -1,5 +1,4 @@
-﻿@using SchedulingWebApp.Controller
-
+﻿@using SchedulingWebApp.Controllers
 
 
 <!DOCTYPE html>
@@ -7,11 +6,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <title>@ViewData["Title"] - SchedulingApplication</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> 
-    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 </head>
 
 <body>
@@ -35,8 +38,8 @@
                             <button class="nav-btn" onclick="openMajorsLayout()">Major</button>
                         </li>
                         <li class="na-item">
-                            <button id="coursesPopUp" class="nav-btn" onclick="OpenCoursesLayout()">Courses</button>
-                            @* <a class="nav-link" id="coursesModal" href="/" onclick="OpenCoursesLayout(event)">Courses</a> *@
+                            @* <button id="coursesPopUpBtn" class="nav-btn" data-toggle="ajax-modal" data-target="#courses-Modal" data-url="@Url.Action("CoursesPopUp", "CoursesModal")">Courses</button> *@
+                            @* <a class="nav-link"  href="/SchedulingWebApp/Pages/Shraed/_CoursesPartial.cshtml" rel="modal:open">Courses</a>  *@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../Privacy">Privacy</a>
@@ -47,11 +50,7 @@
         </nav>
 
         @* Content *@
-        <div class="main contain">
-            <div class="overlay" id="majorsPartial" style="display:none">
-            </div>
-            <div class="overlay" id="coursesPartial" style="display:none">
-            </div>
+        <div class="main contain">    
             @RenderBody()
         </div>
 
@@ -66,7 +65,7 @@
 
 
     @await RenderSectionAsync("Scripts", required: false)
-
+@*
     <script>
         var majorsOpen = false;
         var coursesOpen = false;
@@ -115,7 +114,7 @@
             
     
     </script>
-
+*@
 
 </body>
 </html>

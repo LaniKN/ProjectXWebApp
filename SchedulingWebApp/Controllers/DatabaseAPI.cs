@@ -1,10 +1,10 @@
 using System.Data;
 using System.Text.Json;
 using Dapper;
-using SchedulingWebApp.Controller.Connection;
+using SchedulingWebApp.Controllers.Connection;
 using SchedulingWebApp.Data.Model;
 
-namespace SchedulingWebApp.Controller.API;
+namespace SchedulingWebApp.Controllers.API;
 // if we swap to a dedicated SQL database, Async will apparently be more useful.
 // however as it stands, pulling from the SQLite db doesn't work that well async.
 public class DatabaseAPI : DatabaseConnection {

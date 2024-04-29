@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using SchedulingWebApp.Controller.API;
+using SchedulingWebApp.Controllers.API;
 using SchedulingWebApp.Data.Model;
 
 namespace SchedulingWebApp.Pages.CourseTree;
