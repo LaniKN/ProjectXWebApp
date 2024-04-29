@@ -27,4 +27,3 @@ public class IndexModel(ILogger<IndexModel> logger, DatabaseController databaseC
 
     }
 }
-}
