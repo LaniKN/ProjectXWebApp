@@ -125,8 +125,10 @@ public class DBController : DatabaseConnection {
     				CourseCode VARCHAR(10),
     				PreCoreq VARCHAR(50) NOT NULL,
     				CourseID INT(10),
+					PreCourseCode VARCHAR(10),
     				FOREIGN KEY (CourseCode) REFERENCES Course(CourseCode),
     				FOREIGN KEY (CourseID) REFERENCES Course(CourseID),
+					FOREIGN KEY (PreCourseCode) REFERENCES Prerequisites(PreCourseCode),
     				PRIMARY KEY (CourseCode, PreCoreq, CourseID)
 					);
             ";
@@ -139,6 +141,7 @@ public class DBController : DatabaseConnection {
 					MajorID INT(7) NOT NULL,
 					CourseID INT(10),
 					FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
+					FOREIGN KEY (MajorID) REFERENCES Major(Id)
 					);	
             ";
 			await _connection.ExecuteAsync(sql);
