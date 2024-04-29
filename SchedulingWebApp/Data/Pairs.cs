@@ -6,7 +6,7 @@ using System.Web;
 namespace SchedulingWebApp.Data.Model
 {
 	public class Pairs {
-		public string? MajorName {get; set;}
+		public string? MajorID {get; set;}
 		public int CourseID {get; set;}
 	}
 }

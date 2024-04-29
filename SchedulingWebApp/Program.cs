@@ -1,20 +1,23 @@
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
-using SchedulingWebApp.Controller.BaseClass;
+using SchedulingWebApp.Controller.API;
+using SchedulingWebApp.Controller.Database;
 
 var builder = WebApplication.CreateBuilder(args);
+Task noTouch = new DBController().onInitialize();
 
 
 
 // Add services to the container.
 builder.Services.AddRazorPages().AddRazorPagesOptions(options =>  {
         options.Conventions.AddPageRoute("/Home/Index", "");
+		  options.Conventions.AddPageRoute("/CourseTree/Index","/tree");
 		  
     });
 
-builder.Services.AddScoped<DatabaseController>();
+builder.Services.AddScoped<DatabaseAPI>();
 var app = builder.Build();
 
-new DatabaseController().Initialize();
+await noTouch;
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -32,5 +35,4 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
-
 app.Run();
