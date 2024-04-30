@@ -1,19 +1,34 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using System.Collections.Generic;
+using SchedulingWebApp.Data.Model;
 
 namespace SchedulingWebApp.Pages.Home;
 
 public class IndexModel : PageModel
 {
-    private readonly ILogger<IndexModel> _logger;
+        private readonly static List<CourseViewModel> Courses = new List<CourseViewModel>();
 
-    public IndexModel(ILogger<IndexModel> logger)
-    {
-        _logger = logger;
-    }
-
-    public void OnGet()
+    public void OnGet() 
     {
 
     }
+
+    public PartialViewResult OnGetCoursesPartial() {
+        return new PartialViewResult
+        {
+            ViewName = "_CoursesPartial",
+            ViewData = new ViewDataDictionary<CourseViewModel>(ViewData, new CourseViewModel { })
+        };
+    }
+
+
+//   public IActionResult OnGetCoursesPartial()
+//     {
+//         var model = new CourseViewModel {};
+//         //return _CoursesPartial
+//         return Partial("_CoursesPartial", model);
+//     }
+    
 }

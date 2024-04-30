@@ -1,4 +1,6 @@
 ﻿@using SchedulingWebApp.Controllers
+@using Microsoft.AspNetCore.Mvc.Routing;
+@using Microsoft.AspNetCore.Mvc.TagHelpers;
 
 
 <!DOCTYPE html>
@@ -6,15 +8,18 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <title>@ViewData["Title"] - SchedulingApplication</title>
+    <link rel="stylesheet" 
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+          crossorigin="anonymous">
+    
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> 
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
 </head>
 
 <body>
@@ -37,10 +42,6 @@
                         <li class="nav-item">
                             <button class="nav-btn" onclick="openMajorsLayout()">Major</button>
                         </li>
-                        <li class="na-item">
-                            @* <button id="coursesPopUpBtn" class="nav-btn" data-toggle="ajax-modal" data-target="#courses-Modal" data-url="@Url.Action("CoursesPopUp", "CoursesModal")">Courses</button> *@
-                            @* <a class="nav-link"  href="/SchedulingWebApp/Pages/Shraed/_CoursesPartial.cshtml" rel="modal:open">Courses</a>  *@
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../Privacy">Privacy</a>
                         </li>
@@ -50,11 +51,25 @@
         </nav>
 
         @* Content *@
-        <div class="main contain">    
+        <div class="main contain">  
             @RenderBody()
         </div>
-
     </div>
+
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js" 
+            crossorigin="anonymous"></script>
+    <script 
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" 
+            crossorigin="anonymous"></script>
+    <script 
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
+            crossorigin="anonymous"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
 
     @* Footer  *@
     <div class="border-top footer ">
@@ -65,56 +80,7 @@
 
 
     @await RenderSectionAsync("Scripts", required: false)
-@*
-    <script>
-        var majorsOpen = false;
-        var coursesOpen = false;
 
-        function openMajorsLayout() {
-            majorsOpen = true;
-            $('#majorsPartial').show();
-            $.ajax({
-                type: "POST",
-                url: '@Url.Action("_MajorsPartial","CPController")',
-                data: majorsOpen,
-                error: function(e) {
-                    console.log(e)
-                },
-                success: function(res) {
-                    $("#majorsPartial").html(res)
-                }
-            });
-        }
-
-        function OpenCoursesLayout(e) {
-            console.log('button clicked');
-            var url = '/Index?handler=CoursesModalPartial';
-            $.get(url).done(function(data) {
-                //append HTML to doc, find modal and show
-                $document.body.append(data).find('.modal').modal('show');
-            });
-        }
-
-            /*
-            e.preventDefault();
-            var url = "/SchedulingWebApp/Pages/Shared/CoursesPartial.cshtml";
-            $.ajax({
-                type: "GET",
-                url: url,
-                error: function(e) {
-                    console.log(e)
-                },
-                success: function(data) {
-                    console.log("Partial Load!");
-                    $('#coursesPartial').html(data);
-                    $("#coursesModal").modal('show');
-                }
-            });
-            */
-            
-    
-    </script>
-*@
 
 </body>
 </html>

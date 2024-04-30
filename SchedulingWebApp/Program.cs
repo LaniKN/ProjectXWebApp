@@ -2,10 +2,12 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using SchedulingWebApp.Controllers.API;
 using SchedulingWebApp.Controllers.Database;
 
+
 var builder = WebApplication.CreateBuilder(args);
 Task noTouch = new DBController().onInitialize();
 
-
+builder.WebHost.UseWebRoot("wwwroot");
+builder.WebHost.UseStaticWebAssets();
 
 // Add services to the container.
 builder.Services.AddRazorPages().AddRazorPagesOptions(options =>  {

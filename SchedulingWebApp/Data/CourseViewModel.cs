@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 
 namespace SchedulingWebApp.Data.Model{
     public class CourseViewModel
