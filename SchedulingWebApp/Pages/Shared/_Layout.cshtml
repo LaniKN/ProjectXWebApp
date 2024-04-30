@@ -43,6 +43,9 @@
                             <button class="nav-btn" onclick="openMajorsLayout()">Major</button>
                         </li>
                         <li class="nav-item">
+                            <button id="coursesPopUpBtn" class="nav-btn" data-toggle="ajax-modal" data-url="@Url.Page("Index", "CoursesPartial")">Courses</button>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="../Privacy">Privacy</a>
                         </li>
                     </ul>
@@ -52,6 +55,7 @@
 
         @* Content *@
         <div class="main contain">  
+            <div class="overlay" id="coursesPartial"></div>
             @RenderBody()
         </div>
     </div>

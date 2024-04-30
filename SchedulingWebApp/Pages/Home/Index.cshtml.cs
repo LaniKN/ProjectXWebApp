@@ -8,11 +8,11 @@ namespace SchedulingWebApp.Pages.Home;
 
 public class IndexModel : PageModel
 {
-        private readonly static List<CourseViewModel> Courses = new List<CourseViewModel>();
+    private readonly static List<CourseViewModel> Courses = new List<CourseViewModel>();
 
     public void OnGet() 
     {
-
+        
     }
 
     public PartialViewResult OnGetCoursesPartial() {
@@ -22,13 +22,5 @@ public class IndexModel : PageModel
             ViewData = new ViewDataDictionary<CourseViewModel>(ViewData, new CourseViewModel { })
         };
     }
-
-
-//   public IActionResult OnGetCoursesPartial()
-//     {
-//         var model = new CourseViewModel {};
-//         //return _CoursesPartial
-//         return Partial("_CoursesPartial", model);
-//     }
     
 }

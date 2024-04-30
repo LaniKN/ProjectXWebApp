@@ -9,39 +9,13 @@
     <title>@ViewData["Title"] - SchedulingWebApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-
-
 </head>
 <body>
     <div class="overlay" id="majorsPartial" style="display:none"></div>
-    <div class="overlay" id="coursesPartial"></div>
-
     <div class="text-center">
         <h1 class="display-4">Welcome</h1>
-        <button id="coursesPopUpBtn" class="nav-btn" data-toggle="ajax-modal" data-url="@Url.Page("Index", "CoursesPartial")">Courses</button>
         <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
     
     </div>
 </body>
 
-<script>
-
-
-    /*
-    $(document).ready(function () {
-    console.log("doc ready");
-    var modalPlaceHolderElem = $('#coursesPartial');
-    
-    $('#coursesPopUpBtn').click(function(){
-        $('#coursesPartial').load(url);
-        $.get(url).done(function (data){
-            console.log({data});
-            console.log("Button clicked");
-            console.log(modalPlaceHolderElem.html(data));
-            modalPlaceHolderElem.html(data);
-            modalPlaceHolderElem.find('.modal').modal('show');
-        });
-    });
-});
-*/
-</script>
