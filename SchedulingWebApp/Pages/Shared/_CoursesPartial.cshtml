@@ -13,7 +13,7 @@
                 @if (Model.Courses != null){
                     <div class="courses">
                         <ul>
-                            @* @foreach (var course in Model.CourseViewModel){
+                            @* @foreach (var course in Model.Courses){
                                 <li>
                                     <input type="checkbox" id="@Model.Courses<course>.CourseCode" asp-for="@Model.Taken" value="@Model.Taken" checked="@Model.Taken" />
                                     <label for="@Model.Courses<course>.CourseCode">@Model.Course.CourseCode , @Model.Course.Name </label>

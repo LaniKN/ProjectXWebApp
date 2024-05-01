@@ -11,15 +11,24 @@ public class DatabaseAPI : DatabaseConnection {
 	private readonly IDbConnection _connection;
 	// CHECK: do we need to cache majors from the sqlite database?
 	//private readonly Dictionary<int,string> _majorsCache;
+	private readonly List<Major> _cachedmajors;
 
 	public DatabaseAPI() {
 		_connection = CreateConnection();
+		_cachedmajors = FetchMajors();
 		//_majorsCache = getMajorsAsync().Result;
 	}
 
 	public string toJSON<T>(List<T> input) {
 		return JsonSerializer.Serialize<List<T>>(input);
 	}
+
+	private List<Major> FetchMajors() {
+		return _connection.Query<Major>(@"
+		SELECT *
+		FROM Major").ToList();
+	}
+
 	// using a dictionary due to value key-pair which allows for faster lookup using the key
 	public async Task<Dictionary<int,string>> getMajorsAsync() {
 		Dictionary<int,String> output = (await _connection.QueryAsync<Major>(@"
@@ -34,9 +43,13 @@ public class DatabaseAPI : DatabaseConnection {
 		_connection.QueryFirst<Course>(@"SELECT * FROM Course WHERE CourseID = @courseID;", new {courseID = courseID});
 	public Course FetchCourse(string courseCode) =>
 		_connection.QueryFirst<Course>(@"SELECT * FROM Course WHERE CourseCode = @courseCode;", new {courseCode = courseCode});
+	public Course FetchReqsSpecial(string fuckedString) =>
+		_connection.QueryFirst<Course>(@"SELECT * FROM Course WHERE CourseCode = @scrubbedString",new { scrubbedString = String.Concat(fuckedString.Where(char.IsLetterOrDigit))});
 	
-	public Prerequisites FetchPrereqs(string PreCode) =>
-		_connection.QueryFirst<Prerequisites>(@"SELECT * FROM Prerequisites WHERE PreCourseCode = @PreCode;", new {PreCode = PreCode});
+	public List<int> FetchCoursesFromMajor(int majorID) =>
+	  _connection.Query<int>(@"SELECT MajorId FROM Pairs WHERE MajorID = @id", new {id = majorID}).ToList();
+
+
 
 	
 
