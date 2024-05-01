@@ -13,7 +13,7 @@ using SQLitePCL;
 namespace SchedulingWebApp.Data.Model;
 	public class Course
 	{
-		[JsonPropertyName("CourseOID")] [JsonRequired]
+		[JsonPropertyName("CourseOID")]
 		public int CourseID { get; set; }
 		[JsonPropertyName("CourseCode")]
 		public string? CourseCode { get; set; }

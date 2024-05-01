@@ -1,7 +1,17 @@
 @page
 @model IndexModel
 @{
-    ViewData["Title"] = "Course Tree";
+    ViewData[""] = "Course Tree";
 }
-@Model.returnCourseTest(24855)
-@Model.returnMajorTest()
+<body>
+<ul>
+    <li>"@Model.returnCourseTest(24850)"</li>
+    @* @foreach (var course in Model.CourseViewModel.Courses)
+    {
+        <li>
+            <label for="@Model.FetchCourse()></label>
+        </li>
+    } *@
+</ul>
+
+</body>
