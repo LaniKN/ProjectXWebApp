@@ -485,3 +485,4 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+SqliteDB/database/courses.db
