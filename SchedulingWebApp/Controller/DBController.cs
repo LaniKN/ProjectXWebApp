@@ -8,6 +8,7 @@ using Microsoft.Data.Sqlite;
 using SchedulingWebApp.Controller.Connection;
 using SchedulingWebApp.Data.Model;
 using Z.Dapper.Plus;
+using SchedulingWebApp.Pages;
 
 // TODO: provide more functions for finer database control
 namespace SchedulingWebApp.Controller.Database;
@@ -160,8 +161,9 @@ public class DBController : DatabaseConnection {
             ";
 			await _connection.ExecuteAsync(sql);
 	}	
+
 	//TODO: check to see if the generated values are correct
-	private List<Pairs> generatePairsValues(List<Major> majors, List<Course> courses) {
+	private List<Pairs> generatePairsTable(List<Major> majors, List<Course> courses) {
 		List<Pairs> pairs = new ();
 		foreach (var element in courses)	{
 			majors.Where(m =>
@@ -171,12 +173,21 @@ public class DBController : DatabaseConnection {
 		}
 		return pairs;
 	}
+	private List<CourseMatch> generatePrereqStuff(List<Course> courses) {
+		
+		foreach(var element in courses) {
+			
+
+		}
+		return new ();
+	}
+
 
 	public async Task onInitialize() {
 		var settingUp = TablesExist();
 		var courseJson = ReadJSON<Course>(ReadInFile("courseData.js"));
 		var majorJson = ReadJSON<Major>(ReadInFile("majorData.js"));
-		var generatedPairs = generatePairsValues(majorJson,courseJson);
+		var generatedPairs = generatePairsTable(majorJson,courseJson);
 		await settingUp.ContinueWith((finishSetup) => {
 		ClearAllTables();
 		try {
