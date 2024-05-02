@@ -10,9 +10,10 @@ public class IndexModel(ILogger<IndexModel> logger, DatabaseAPI databaseAPI) : P
 	private readonly ILogger<IndexModel> _logger = logger;
 	private readonly DatabaseAPI _api = databaseAPI;
 	
-	public string returnCourseTest(int courseID) {
-		return _api.FetchCourse(courseID).CourseCode ?? "";
+	public Course returnCourse(int courseID) {
+		return _api.FetchCourse(courseID) ?? new Course();
 	}
+
 	// possible way to use async functions;
 	public string returnMajorTest() {
 		var test = _api.getMajorsAsync();

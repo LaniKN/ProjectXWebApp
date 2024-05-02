@@ -51,26 +51,17 @@ ul, #myUL {
 <p>Click on the box(es) to open or close the tree branches.</p>
 
 <ul id="myUL">
-  <li><span class="box">Year 1</span>
-    <ul class="nested">
-      <li><span class="box">Math</span>
-        <ul class="nested">
-            <li>Pre Calclus</li>
-            <li>Calclus 1</li>
-        </ul>
-      <li><span class="box">Computer Science</span>
-        <ul class="nested">
-            <li>Intro to Computer Science</li>
-            <li>Computer Science 1</li>
-        </ul>
-      <li><span class="box">General Education</span>
-        <ul class="nested">
-            <li>@Model.returnCourseTest(24850)</li>
-            <li>Group Dynamics</li>
-        </ul>
-      </li>  
-    </ul>
-  </li>
+@* course.CourseID *@
+  @foreach (var course in Model.CourseViewModel.Courses
+    {
+      <li>
+      <span class="box">@Model.returnCourse(24914).CourseCode @Model.returnCourse(24914).CourseName</span>
+      <ul class="nested">
+          <li>@Model.returnCourse(24914).CourseDescription</li>
+          <li>@Model.returnCourse(24914).Coreq @Model.returnCourse(24914).PreCoReqs</li>
+      </ul>
+      </li>
+    }
 </ul>
 
 <script>
@@ -83,11 +74,5 @@ for (i = 0; i < toggler.length; i++) {
     this.classList.toggle("check-box");
   });
 }
-</script>  
-    @* @foreach (var course in Model.CourseViewModel.Courses)
-    {
-        <li>
-            <label for="@Model.returnCourseTest(24850)"></label>
-        </li>
-    } *@
+</script>   
 </body>
