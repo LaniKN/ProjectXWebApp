@@ -28,6 +28,7 @@ ul, #myUL {
   color: black;
   display: inline-block;
   margin-right: 6px;
+  font-weight: bold;
 }
 
 .check-box::before {
@@ -42,29 +43,50 @@ ul, #myUL {
 .active {
   display: block;
 }
+
+.treeContent {
+  width: 95%;
+  align-self:flex-start;
+  flex-direction:column;
+  border-style:solid;
+  border-color:transparent;
+  border-radius:5px;
+  background-color: #f9f6f7;
+}
+
 </style>
 </head>
 <body>
-
-<h2>Course Tree</h2>
-<p>This tree will show you what classes you can take.</p>
-<p>Click on the box(es) to open or close the tree branches.</p>
-
-<ul id="myUL">
-@* course.CourseID *@
-  @* @foreach (var course in Model.CourseViewModel.Courses) *@
-      <li>
-      <span class="box">@Model.returnCourse(24914).CourseCode @Model.returnCourse(24914).CourseName</span>
-      <ul class="nested">
-          <li>@Model.returnCourse(24914).CourseDescription</li>
-          @foreach(var outerListIterator in @Model.returnCourseReqs("BIO2730")){
-            @foreach(var innerListIterator in outerListIterator) {
-              <li>PreReqs; @innerListIterator @Model.returnCourse(innerListIterator).CourseName</li>
+  <div>
+    <header>Course Tree</header>
+  </div>
+  <div class="pageBody">
+    <div class='treeContent'>
+      <div class="main-contant">
+        <main>
+          <h1>This tree will show you what classes you can take.</h1>
+          <p>Click on the box(es) to open or close the tree branches.</p>
+          <ul id="myUL">
+          @* course.CourseID *@
+          @* @foreach (var course in Model.CourseViewModel.Courses) *@
+            <li>
+              <span class="box">@Model.returnCourse(24914).CourseCode @Model.returnCourse(24914).CourseName</span>
+                <ul class="nested">
+                  <li>@Model.returnCourse(24914).CourseDescription</li>
+                    @foreach(var outerListIterator in @Model.returnCourseReqs("BIO2730")){
+                    @foreach(var innerListIterator in outerListIterator) {
+                  <li>PreReqs; @innerListIterator @Model.returnCourse(innerListIterator).CourseName</li>
+              }
             }
-          }
-      </ul>
-      </li>
-</ul>
+        </ul>
+        </li>
+  </ul>
+        </main>
+      </div>
+    </div>
+  </div>
+  
+
 
 <script>
 var toggler = document.getElementsByClassName("box");
