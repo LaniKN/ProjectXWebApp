@@ -24,7 +24,7 @@
 
 <body>
     <div class="layout">
-        <nav class=" navbar contain border-right">
+        <nav class=" navbar contain">
             <div class="container">
                 <a href="../Home/Index"><img class="logo" src="~/images/ITShielfTransparent.png"/></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -40,14 +40,14 @@
                             <a class="nav-link" href="../CourseTree/Index">Course Tree</a>
                         </li>
                         <li class="nav-item">
-                            <button class="nav-btn" onclick="openMajorsLayout()">Major</button>
+                            <button id="majorsPopUpBtn" class="nav-btn" data-toggle="ajax-modal" data-url="@Url.Page("Index", "MajorsPartial")">Major</button>
                         </li>
                         <li class="nav-item">
                             <button id="coursesPopUpBtn" class="nav-btn" data-toggle="ajax-modal" data-url="@Url.Page("Index", "CoursesPartial")">Courses</button>
                         </li>
-                        <li class="nav-item">
+                        @* <li class="nav-item">
                             <a class="nav-link" href="../Privacy">Privacy</a>
-                        </li>
+                        </li> *@
                     </ul>
                 </div>
             </div>
@@ -56,6 +56,7 @@
         @* Content *@
         <div class="main contain">  
             <div class="overlay" id="coursesPartial"></div>
+            <div class="overlay" id="majorsPartial"></div>
             @RenderBody()
         </div>
     </div>
@@ -76,11 +77,11 @@
 
 
     @* Footer  *@
-    <div class="border-top footer ">
+    @* <div class="border-top footer ">
         <div>
             &copy; 2024 - SchedulingWebApp - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
-    </div>
+    </div> *@
 
 
     @await RenderSectionAsync("Scripts", required: false)

@@ -5,6 +5,7 @@
 
 $(function() {
     var placeHolderElemCourses=$('#coursesPartial');
+    var placeHolderElemMajors=$('#majorsPartial');
 
     $('#coursesPopUpBtn').click(function (event) {
         //alert('button clicked');
@@ -18,6 +19,16 @@ $(function() {
         });
 
     });
+
+    $('#majorsPopUpBtn').click(function (event) {
+        var url=$(this).data('url');
+        
+        $.get(url).done(function (data){
+            placeHolderElemMajors.html(data);
+            placeHolderElemMajors.append(data).find('#majorsModal').modal('show');
+        });
+    });
+
 });
 
 

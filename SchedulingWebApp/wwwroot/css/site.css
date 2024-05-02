@@ -10,40 +10,70 @@
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-#coursesPopUpBtn:active {
-  background-color:red;
-}
 
 html {
   font-size: 14px;
   position: relative;
   min-height: 100%;
+  background-color: #546775;
 }
 
 
 .layout {
-  height:90vh;
+  max-height:200%;
+  min-height:100vh;
   display:flex;
   flex-direction:row;
+  background-color: #546775;
 }
 
 .navbar {
-  height: 100vh;
-  width: 150px;
+  height: 100%;
+  width: 15em;
   z-index:1;
   top:0;
   left:0;
   align-content:flex-start;
   overflow-x: hidden;
   transition: 0.5s;
-  background-color: #f9f6f7;
+  text-align:center;
+}
+
+nav {
+  background-color: #546775;
 }
 
 .logo {
-  object-fit:contain;
-  vertical-align:middle;
-  width: 75px;
-  height: 75px;
+  object-fit:cover;
+  display:block;
+  margin: auto;
+  width: 50%;
+  height: 50%;
+}
+
+.logo-container {
+  margin-top:10px;
+  margin-bottom: 2vh;
+}
+
+.nav-btn {
+  color:#132531;
+  background-color:transparent;
+  border-style:none;
+  padding:4px;
+}
+
+.nav-item {
+  margin-bottom:20px;
+  padding:5px;
+  border-style:none;
+  border-radius:2px;
+  background-color:#f9f6f7;
+}
+
+.nav-link {
+  color:#132531;
+
 }
 
 
@@ -56,8 +86,16 @@ html {
   transition: margin-left 0.5s;
   width:100%;
   text-align:center;
-  background-color:#1D374A;
-  height:100%;
+  height:auto;
+  border-left-color:#132531;
+  border-left-style:solid;
+  border-left-width:1px;
+}
+
+body {
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
 }
 
 .btn-primary {
@@ -73,15 +111,16 @@ html {
 }
 
 .border-top {
-  border-top: 1px solid;
+  border-top: 1px solid #e5e5e5;
 }
 .border-bottom {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #e5e5e5;
 }
 
-.border-right {
-  border-right: 1px solid blac;
+.border-right{
+  border-right: 1px solid #132531;
 }
+
 
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
@@ -93,14 +132,12 @@ button.accept-policy {
 }
 
 .footer {
-  bottom: 0;
-  right:0;
-  width: 100vw;
+  position: absolute;
+  width: 100%;
   white-space: nowrap;
   line-height: 50px;
-  height:6vh;
   text-align:center;
-  background-color: #f9f6f7;
+  margin-top: auto;
 }
 
 
@@ -108,10 +145,10 @@ button.accept-policy {
 
 .partialBody {
   background-color:white;
-  width:60vw;
-  height:45vh;
+  width:auto;
+  height:auto;
   display:flex;
-  flex-direction:column;
+  flex-direction:row;
 }
 
 .overlay {
@@ -120,11 +157,11 @@ button.accept-policy {
 
 .modal {
   border-style:solid;
-  top:25vh;
-  left:25vw;
+  top:20vh;
+  left:40vw;
   height:60vh;
+  width:50vw;
 }
-
 
 /* Home page CSS  */
 

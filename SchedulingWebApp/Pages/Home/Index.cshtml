@@ -1,16 +1,17 @@
-﻿@page
+﻿@page "{handler?}"
+@model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 <head>
-    <link href="../Shared/_Layout.cshtml.css" rel="stylesheet"/>
+    @* <link href="../Shared/_Layout.cshtml.css" rel="stylesheet"/> *@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SchedulingWebApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
-<body class="home">
+<div class="home">
     <div id="modal-placeholder">
         <div id="coursesPartial"></div>
         <div id="majorPartial"></div>
@@ -59,4 +60,4 @@
             </div>
         </div>
     </div>
-</body>
+</div>

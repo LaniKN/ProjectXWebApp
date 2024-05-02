@@ -1,8 +1,37 @@
-@using SchedulingWebApp.Data.Model
-<div>
-    <div class="partialBody">
-            <div class="containerPartial">
+@model SchedulingWebApp.Data.Model.Major
 
+@{
+    Layout =null;
+}
+
+    <div class="modal fade" id="majorsModal" asp-page-handler="MajorsPartial" tabindex="-1" role="dialog">
+        <div class="partialBody modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title">Select Major:</h1>
+                    <button id="majorsClosePopUp" type="button" class="closeModal" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Please select all courses that you have already taken and/or have credits for:</p>
+                    <form asp-asp-page-handler="MajorsPartial" class="containSelect">
+                        <div class="majors">
+                            <ul>
+                                @* @foreach (var major in Model.){
+                                    <li>
+                                        <input type="checkbox" id="@Model.Courses<course>.CourseCode" asp-for="@Model.Taken" value="@Model.Taken" checked="@Model.Taken" />
+                                        <label for="@Model.Courses<course>.CourseCode">@Model.Course.CourseCode , @Model.Course.Name </label>
+                                    </li>
+                                } *@
+                            </ul>
+                            <p>This is working! Major is not null</p>
+                        </div>
+                        
+                    </form>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button id="coursesSave" class="btn" data-save="modal">Save</button>
+                </div>
             </div>
+        </div>
     </div>
-</div>>

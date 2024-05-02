@@ -34,4 +34,12 @@ public class IndexModel(ILogger<IndexModel> logger, DatabaseAPI databaseAPI) : P
             ViewData = new ViewDataDictionary<CourseViewModel>(ViewData, new CourseViewModel { })
         };
     }
+
+	public PartialViewResult OnGetMajorsPartial() {
+        return new PartialViewResult
+        {
+            ViewName = "_MajorsPartial",
+            ViewData = new ViewDataDictionary<Major>(ViewData, new Major { })
+        };
+    }
 }
