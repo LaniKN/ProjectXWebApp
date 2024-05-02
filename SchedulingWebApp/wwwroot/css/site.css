@@ -10,35 +10,70 @@
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
+
 html {
   font-size: 14px;
   position: relative;
   min-height: 100%;
+  background-color: #546775;
 }
 
 
 .layout {
-  height:90vh;
+  max-height:200%;
+  min-height:100vh;
   display:flex;
   flex-direction:row;
+  background-color: #546775;
 }
 
 .navbar {
   height: 100%;
-  width: 150px;
+  width: 15em;
   z-index:1;
   top:0;
   left:0;
   align-content:flex-start;
   overflow-x: hidden;
   transition: 0.5s;
+  text-align:center;
+}
+
+nav {
+  background-color: #546775;
 }
 
 .logo {
-  object-fit:contain;
-  vertical-align:middle;
-  width: 75px;
-  height: 75px;
+  object-fit:cover;
+  display:block;
+  margin: auto;
+  width: 50%;
+  height: 50%;
+}
+
+.logo-container {
+  margin-top:10px;
+  margin-bottom: 2vh;
+}
+
+.nav-btn {
+  color:#132531;
+  background-color:transparent;
+  border-style:none;
+  padding:4px;
+}
+
+.nav-item {
+  margin-bottom:20px;
+  padding:5px;
+  border-style:none;
+  border-radius:2px;
+  background-color:#f9f6f7;
+}
+
+.nav-link {
+  color:#132531;
+
 }
 
 
@@ -51,6 +86,16 @@ html {
   transition: margin-left 0.5s;
   width:100%;
   text-align:center;
+  height:auto;
+  border-left-color:#132531;
+  border-left-style:solid;
+  border-left-width:1px;
+}
+
+body {
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
 }
 
 .btn-primary {
@@ -73,8 +118,9 @@ html {
 }
 
 .border-right{
-  border-right: 1px solid #e5e5e5;
+  border-right: 1px solid #132531;
 }
+
 
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
@@ -87,12 +133,11 @@ button.accept-policy {
 
 .footer {
   position: absolute;
-  bottom: 0;
   width: 100%;
   white-space: nowrap;
   line-height: 50px;
-  height:10vh;
   text-align:center;
+  margin-top: auto;
 }
 
 
@@ -100,15 +145,96 @@ button.accept-policy {
 
 .partialBody {
   background-color:white;
-  width:60vw;
-  height:45vh;
+  width:auto;
+  height:auto;
   display:flex;
   flex-direction:row;
 }
 
 .overlay {
   background-color:rgba(0, 0, 0, .05)
-  
+}
+
+.modal {
+  border-style:solid;
+  top:20vh;
+  left:40vw;
+  height:60vh;
+  width:50vw;
+}
+
+/* Home page CSS  */
+
+*{
+  box-sizing:content-box;
+}
+
+header{
+  background: #fa4616;
+  font-size:60px;
+}
+
+header, h1 {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+.main-content{
+  display: flex;
+  flex: 1;
+}
+
+.home{
+  height: 95vh;
+  text-align: center;
+  color: black;
+  display: flex;
+  flex-direction: column;  
+}
+
+.pageContent{
+  width: 95%;
+  align-self:center;
+  flex-direction:column;
+  border-style:solid;
+  border-color:transparent;
+  border-radius:5px;
+  background-color: #f9f6f7;
+}
+
+.pageBody {
+  background-color: #1D374A;
+  display:flex;
+  justify-content: center;
+  padding-top:3em;
+  padding-bottom:3em;
+  height:100%;
+}
+
+p, li {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size:24px;
+}
+
+main{
+  background: #f9f6f7;
+  padding: 3em 2em 3em 2em;
+  flex: 5 5 150px;
+}
+
+.content {
+  padding: 2% 0 2% 0;
+}
+
+dl {
+  padding:1em;
+}
+
+dt {
+  font-size:36px;
 }
 
 

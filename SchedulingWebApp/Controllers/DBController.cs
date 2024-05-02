@@ -5,13 +5,13 @@ using System.Text.Json;
 using Dapper;
 using System.Linq;
 using Microsoft.Data.Sqlite;
-using SchedulingWebApp.Controller.Connection;
+using SchedulingWebApp.Controllers.Connection;
 using SchedulingWebApp.Data.Model;
 using Z.Dapper.Plus;
 using SchedulingWebApp.Pages;
 
 // TODO: provide more functions for finer database control
-namespace SchedulingWebApp.Controller.Database;
+namespace SchedulingWebApp.Controllers.Database;
 
 public class DBController : DatabaseConnection {
 	private const string BasePath = "../SqliteDB/database/table_info";

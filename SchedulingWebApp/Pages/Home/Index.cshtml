@@ -1,21 +1,63 @@
-﻿@page
+﻿@page "{handler?}"
+@model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 <head>
-    <link href="../Shared/_Layout.cshtml.css" rel="stylesheet"/>
+    @* <link href="../Shared/_Layout.cshtml.css" rel="stylesheet"/> *@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SchedulingWebApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
-<body>
-    <div id="courses" style="display:none;"></div>
-    <div id="major" style="display:none;"></div>
-    <div class="text-center">
-        <h1 class="display-4">Welcome</h1>
-        <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    
+<div class="home">
+    <div id="modal-placeholder">
+        <div id="coursesPartial"></div>
+        <div id="majorPartial"></div>
     </div>
-</body>
+    <div class="body">
+        <div>
+            <header>
+                Welcome To IT Course Select
+            </header>
+        </div>
+        <div class="pageBody">
+            <div class="pageContent">
+                <div class="main-content" id="about">
+                    <main>
+                        <h1>About Tech</h1>
+                        <p>We prepare students for active participation, career advancement and leadership in the global 21st century society, 
+                                and motivate them toward lives of significance and worth. Indiana Tech specializes in career-oriented degree programs in business, engineering, computer science, education, criminal justice, and others. 
+                                In addition to the traditional semester-long class format, Indiana Tech also offers accelerated degree programs and online programs via its College of 
+                                Professional Studies.</p>
+                    </main>
+                </div>
+
+                <div id="needsContent" class="content">
+                    <h1>What We Need From You!</h1>
+                    <div>
+                        <p>First we'll need you to select your current major!</p>
+                        @* Button Major go here *@
+                    </div>
+                    <div>
+                        <p>Next we'll need you to select any courses you've already taken!</p>
+                        @* Button Courses Partial Here *@
+                    </div>
+                </div>
+
+                <div id="getContent" class="content">
+                    <h1>What you'll be getting!</h1>
+                    <dl>
+                        <dt>Courses you Need</dt>
+                        <dd>
+                            <li>Pre-Requisites</li>
+                            <li>Co-Requisites</li>
+                            <li>All possible courses you can take!</li>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
