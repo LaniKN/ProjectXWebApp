@@ -1,5 +1,7 @@
+using System.Collections.Specialized;
 using System.Data;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using Dapper;
 using SchedulingWebApp.Controller.Connection;
 using SchedulingWebApp.Data.Model;
@@ -12,11 +14,12 @@ public class DatabaseAPI : DatabaseConnection {
 	// CHECK: do we need to cache majors from the sqlite database?
 	//private readonly Dictionary<int,string> _majorsCache;
 	private readonly List<Major> _cachedmajors;
+	private readonly HashSet<string> _courseCodeLookUP;
 
 	public DatabaseAPI() {
 		_connection = CreateConnection();
 		_cachedmajors = FetchMajors();
-		//_majorsCache = getMajorsAsync().Result;
+		_courseCodeLookUP = _connection.Query<string>(@"SELECT CourseCode FROM Course").ToHashSet();
 	}
 
 	public string toJSON<T>(List<T> input) {
@@ -39,10 +42,14 @@ public class DatabaseAPI : DatabaseConnection {
 	}
 
 	// TODO: Finish the Fetch functions
+	// TODO: maybe make FetchCourse into one function?
+	
 	public Course FetchCourse(int courseID) =>
 		_connection.QueryFirst<Course>(@"SELECT * FROM Course WHERE CourseID = @courseID;", new {courseID = courseID});
+	
+	//TODO: figure out why this is fucked
 	public Course FetchCourse(string courseCode) =>
-		_connection.QueryFirst<Course>(@"SELECT * FROM Course WHERE CourseCode = @courseCode;", new {courseCode = courseCode});
+		_connection.QueryFirst<Course>(@"SELECT * FROM Course WHERE CourseCode LIKE @courseCode;", new {courseCode = courseCode});
 	public Course FetchReqsSpecial(string fuckedString) =>
 		_connection.QueryFirst<Course>(@"SELECT * FROM Course WHERE CourseCode = @scrubbedString",new { scrubbedString = String.Concat(fuckedString.Where(char.IsLetterOrDigit))});
 	
@@ -50,19 +57,45 @@ public class DatabaseAPI : DatabaseConnection {
 	  _connection.Query<int>(@"SELECT MajorId FROM Pairs WHERE MajorID = @id", new {id = majorID}).ToList();
 
 
+	public void fetchCoursePreReq(string courseCode) {
+
+	}
+	public void fetchCourseCoReq(string courseCode) {
+		
+	}
+	public void fetchCoursePreCoReq(string courseCode) {
+
+	}
+
+	public void FetchReqs(string courseCode) {
+		List<List<string>> RequirementsList = new List<List<string>>{
+			// Prereqs
+			new List<string>(),
+			// Coreqs
+			new List<string>(),
+			// PreCoreqs
+			new List<string>()
+		};
+		Course incomingCourse = FetchCourse(courseCode);
+
+		_courseCodeLookUP.Where(m => 
+			incomingCourse.PreReq != null 
+			? incomingCourse.PreReq.Contains(m): false).ToList().ForEach(t=> RequirementsList[0].Add(t));
+		_courseCodeLookUP.Where(m => 
+			incomingCourse.CoReq != null 
+			? Regex.Replace(incomingCourse.CoReq, @"\s", string.Empty).Contains(m) : false).ToList().ForEach(t => RequirementsList[1].Add(t));
+		_courseCodeLookUP.Where(m => 
+			incomingCourse.PreCoReqs != null 
+			? Regex.Replace(incomingCourse.PreCoReqs, @"\s", string.Empty).Contains(m) : false).ToList().ForEach(t => RequirementsList[2].Add(t));
+	}
+	public string FetchPreReqString(string courseCode) {
+		Course incomingCourse = FetchCourse(courseCode);
+		return incomingCourse.PreReq ?? "";
+	}
+
+
 
 	
-
-	
-	// TODO: keep researching async/await usage
-	// WARNING: don't use getCourseAsync atm. you won't get any info out of the table
-	// use getCourse instead
-	public async Task<Course> getCourseAsync(int courseID) => 
-		await _connection.QueryFirstAsync<Course>(@"
-		SELECT *
-		FROM Course
-		WHERE CourseID = @courseID", new {courseID = courseID});
-
 	public async Task<Course> getCourseAsync(string courseCode) =>
 		await _connection.QueryFirstAsync<Course>(@"
 		SELECT *

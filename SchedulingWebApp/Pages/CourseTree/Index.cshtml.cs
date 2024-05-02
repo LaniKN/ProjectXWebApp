@@ -18,7 +18,8 @@ public class IndexModel(ILogger<IndexModel> logger, DatabaseAPI databaseAPI) : P
 	public string returnMajorTest() {
 		var test = _api.getMajorsAsync();
 		test.Wait();
-		return (test.Result)[3];
+		_api.FetchReqs("BME3200");
+		return (test.Result)[1];
 	}
 	public void OnGet()
     {
