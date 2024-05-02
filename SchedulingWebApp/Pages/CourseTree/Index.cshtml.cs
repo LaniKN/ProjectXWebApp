@@ -11,14 +11,23 @@ public class IndexModel(ILogger<IndexModel> logger, DatabaseAPI databaseAPI) : P
 {
 	private readonly ILogger<IndexModel> _logger = logger;
 	private readonly DatabaseAPI _api = databaseAPI;
-	public string returnCourseTest(int courseID) {
-		return _api.FetchCourse(courseID).CourseCode ?? "";
+		
+	public Course returnCourse(int courseID) {
+		return _api.FetchCourse(courseID) ?? new Course();
 	}
+	public Course returnCourse(string courseCode) {
+		return _api.FetchCourse(courseCode) ?? new Course();
+	}
+	public List<List<string>> returnCourseReqs(string courseCode) {
+		return _api.FetchReqs(courseCode);
+	}
+
 	// possible way to use async functions;
 	public string returnMajorTest() {
 		var test = _api.getMajorsAsync();
 		test.Wait();
-		return (test.Result)[3];
+		_api.FetchReqs("BME3200");
+		return (test.Result)[1];
 	}
 	private readonly static List<CourseViewModel> Courses = new List<CourseViewModel>();
 
