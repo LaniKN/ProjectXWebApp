@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using SchedulingWebApp.Controller.API;
+using SchedulingWebApp.Controllers.API;
 using SchedulingWebApp.Data.Model;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using System.Collections.Generic;
 
 namespace SchedulingWebApp.Pages.CourseTree;
 
@@ -18,8 +20,26 @@ public class IndexModel(ILogger<IndexModel> logger, DatabaseAPI databaseAPI) : P
 		test.Wait();
 		return (test.Result)[3];
 	}
-	public void OnGet()
+	private readonly static List<CourseViewModel> Courses = new List<CourseViewModel>();
+
+    public void OnGet() 
     {
 
+    }
+
+    public PartialViewResult OnGetCoursesPartial() {
+        return new PartialViewResult
+        {
+            ViewName = "_CoursesPartial",
+            ViewData = new ViewDataDictionary<CourseViewModel>(ViewData, new CourseViewModel { })
+        };
+    }
+
+	public PartialViewResult OnGetMajorsPartial() {
+        return new PartialViewResult
+        {
+            ViewName = "_MajorsPartial",
+            ViewData = new ViewDataDictionary<Major>(ViewData, new Major { })
+        };
     }
 }

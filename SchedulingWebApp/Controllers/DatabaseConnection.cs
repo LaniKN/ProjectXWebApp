@@ -1,7 +1,7 @@
 using System.Data;
 using Microsoft.Data.Sqlite;
 
-namespace SchedulingWebApp.Controller.Connection;
+namespace SchedulingWebApp.Controllers.Connection;
 
 public class DatabaseConnection {
 	private const string BasePath = "../SqliteDB/database";

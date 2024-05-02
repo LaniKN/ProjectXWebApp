@@ -3,4 +3,35 @@
 
 // Write your JavaScript code.
 
+$(function() {
+    var placeHolderElemCourses=$('#coursesPartial');
+    var placeHolderElemMajors=$('#majorsPartial');
+
+    $('#coursesPopUpBtn').click(function (event) {
+        //alert('button clicked');
+        var url=$(this).data('url');
+        console.log({url});
+        $.get(url).done(function (data){
+            //file modal and append HTML
+            console.log({data});
+            placeHolderElemCourses.html(data);
+            placeHolderElemCourses.append(data).find('#coursesModal').modal('show');
+        });
+
+    });
+
+    $('#majorsPopUpBtn').click(function (event) {
+        var url=$(this).data('url');
+        
+        $.get(url).done(function (data){
+            placeHolderElemMajors.html(data);
+            placeHolderElemMajors.append(data).find('#majorsModal').modal('show');
+        });
+    });
+
+});
+
+
+
+
 
