@@ -67,7 +67,7 @@ public class DatabaseAPI : DatabaseConnection {
 
 	}
 
-	public void FetchReqs(string courseCode) {
+	public List<List<string>> FetchReqs(string courseCode) {
 		List<List<string>> RequirementsList = new List<List<string>>{
 			// Prereqs
 			new List<string>(),
@@ -87,6 +87,7 @@ public class DatabaseAPI : DatabaseConnection {
 		_courseCodeLookUP.Where(m => 
 			incomingCourse.PreCoReqs != null 
 			? Regex.Replace(incomingCourse.PreCoReqs, @"\s", string.Empty).Contains(m) : false).ToList().ForEach(t => RequirementsList[2].Add(t));
+		return RequirementsList;
 	}
 	public string FetchPreReqString(string courseCode) {
 		Course incomingCourse = FetchCourse(courseCode);

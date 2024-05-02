@@ -52,16 +52,18 @@ ul, #myUL {
 
 <ul id="myUL">
 @* course.CourseID *@
-  @foreach (var course in Model.CourseViewModel.Courses
-    {
+  @* @foreach (var course in Model.CourseViewModel.Courses) *@
       <li>
       <span class="box">@Model.returnCourse(24914).CourseCode @Model.returnCourse(24914).CourseName</span>
       <ul class="nested">
           <li>@Model.returnCourse(24914).CourseDescription</li>
-          <li>@Model.returnCourse(24914).Coreq @Model.returnCourse(24914).PreCoReqs</li>
+          @foreach(var outerListIterator in @Model.returnCourseReqs("BIO2730")){
+            @foreach(var innerListIterator in outerListIterator) {
+              <li>PreReqs; @innerListIterator @Model.returnCourse(innerListIterator).CourseName</li>
+            }
+          }
       </ul>
       </li>
-    }
 </ul>
 
 <script>

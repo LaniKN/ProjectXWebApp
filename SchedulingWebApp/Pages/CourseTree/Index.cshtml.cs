@@ -9,9 +9,15 @@ public class IndexModel(ILogger<IndexModel> logger, DatabaseAPI databaseAPI) : P
 {
 	private readonly ILogger<IndexModel> _logger = logger;
 	private readonly DatabaseAPI _api = databaseAPI;
-	
+		
 	public Course returnCourse(int courseID) {
 		return _api.FetchCourse(courseID) ?? new Course();
+	}
+	public Course returnCourse(string courseCode) {
+		return _api.FetchCourse(courseCode) ?? new Course();
+	}
+	public List<List<string>> returnCourseReqs(string courseCode) {
+		return _api.FetchReqs(courseCode);
 	}
 
 	// possible way to use async functions;

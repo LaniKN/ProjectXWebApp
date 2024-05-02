@@ -19,6 +19,10 @@ var app = builder.Build();
 
 await noTouch;
 
+if(!File.Exists("./wwwroot/images/Coconut.png")) {
+    throw new Exception("No Coconuts :(");
+}
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
