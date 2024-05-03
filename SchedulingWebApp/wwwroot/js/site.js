@@ -54,18 +54,17 @@ $(function() {
 
     //for posts
     //Major Post
-    placeHolderElemMajors.on('click', '[data-save="modal"]', function (event){
+    placeHolderElemMajors.on('click', '[data-save="majorModal"]', function (event){
         event.preventDefault();
-        console.log("prevented default");
         var form = $(this).parents('.modal').find('form');
-        var actionUrl = form.attr('action');
+        var actionUrl = form.attr('method');
         var dataToSend = form.serialize();
         console.log("Form: " + form);
         console.log("actUrl: " + actionUrl);
         console.log("dataSend: " + dataToSend);
 
         $.post(actionUrl, dataToSend).done(function (data) {
-            console.log("posted");
+            console.log("posted to:" + actionUrl + "\n" +dataToSend);
             placeHolderElemMajors.find('#majorsModal').modal('hide');
         });
 

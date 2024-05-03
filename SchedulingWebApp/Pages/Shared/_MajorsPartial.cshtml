@@ -4,9 +4,7 @@
 @{
     Layout =null;
 }
-@{
 
-}
 
     <div class="modal fade" id="majorsModal" asp-page-handler="MajorsPartial" tabindex="-1" role="dialog" area-labelledby="pickMajor">
         <div class="partialBody modal-dialog" role="document">
@@ -20,13 +18,13 @@
                     <form asp-asp-page-handler="MajorsPartial" class="containSelect" method="post">
                         <select id="major" name="major">
                             @foreach (var elem in Model){
-                                <option asp-for="Major" value="@elem">@elem.major</option>
+                                <option asp-for="Major" value="@Model.">@elem.major</option>
                             }
                         </select>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button id="majorSave" class="btn-save" data-save="modal">Save</button>
+                    <button id="majorSave" class="btn-save" data-save="modal" type="submit" value="submit" asp-page-handler="SubmitMajor">Save</button>
                 </div>
             </div>
         </div>

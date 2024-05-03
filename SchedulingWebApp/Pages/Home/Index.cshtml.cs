@@ -29,6 +29,14 @@ public class IndexModel(ILogger<IndexModel> logger, DatabaseAPI databaseAPI) : P
         }
     }
 
+    public void fillCoursesList(Major major) {
+        List<int> courseIds = _api.FetchCoursesFromMajor(major.Id);
+
+        foreach (int elem in courseIds){
+            course.Add(_api.FetchCourse(elem));
+        }
+    }
+
 
     public void OnGet() 
     {
@@ -51,14 +59,11 @@ public class IndexModel(ILogger<IndexModel> logger, DatabaseAPI databaseAPI) : P
             ViewData = new ViewDataDictionary<List<Major>>(ViewData, major)
         };
     }
+    
 
-    public void OnPostMajorsPartial(Major model) {
-        List<int> courseIds = _api.FetchCoursesFromMajor(model.Id);
-
-        foreach (int Id in courseIds) {
-            course.Add(_api.FetchCourse(Id));
-        }
-
+    public void OnGetSubmitMajor(Major model) {
+        Console.WriteLine("In get submit major");
+        fillCoursesList(model);
     }
     
 }
