@@ -11,5 +11,6 @@ namespace SchedulingWebApp.Data.Model
 		public string major {get; set;}
 		[JsonPropertyName("ID")]
 		public int Id {get; set;}
+
 	}
 }

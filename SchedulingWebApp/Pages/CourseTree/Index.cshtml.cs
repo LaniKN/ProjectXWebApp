@@ -11,6 +11,14 @@ public class IndexModel(ILogger<IndexModel> logger, DatabaseAPI databaseAPI) : P
 {
 	private readonly ILogger<IndexModel> _logger = logger;
 	private readonly DatabaseAPI _api = databaseAPI;
+	
+	private readonly static List<Course> courses = new List<Course>();
+    //private readonly static List<Major> majors = new List<Major>();
+
+    private static List<Major> major = new List<Major>();
+
+//put saved model with major picked
+    private static ViewModel viewModel = new ViewModel();
 		
 	public Course returnCourse(int courseID) {
 		return _api.FetchCourse(courseID) ?? new Course();
@@ -22,6 +30,8 @@ public class IndexModel(ILogger<IndexModel> logger, DatabaseAPI databaseAPI) : P
 		return _api.FetchReqs(courseCode);
 	}
 
+	
+
 	// possible way to use async functions;
 	public string returnMajorTest() {
 		var test = _api.getMajorsAsync();
@@ -29,7 +39,9 @@ public class IndexModel(ILogger<IndexModel> logger, DatabaseAPI databaseAPI) : P
 		_api.FetchReqs("BME3200");
 		return (test.Result)[1];
 	}
-	private readonly static List<CourseViewModel> Courses = new List<CourseViewModel>();
+
+	//modal stuff below here
+	// private readonly static List<ViewModel> courses = new List<ViewModel>();
 
     public void OnGet() 
     {
@@ -40,7 +52,7 @@ public class IndexModel(ILogger<IndexModel> logger, DatabaseAPI databaseAPI) : P
         return new PartialViewResult
         {
             ViewName = "_CoursesPartial",
-            ViewData = new ViewDataDictionary<CourseViewModel>(ViewData, new CourseViewModel { })
+            ViewData = new ViewDataDictionary<Course>(ViewData, new Course { })
         };
     }
 
@@ -52,3 +64,4 @@ public class IndexModel(ILogger<IndexModel> logger, DatabaseAPI databaseAPI) : P
         };
     }
 }
+

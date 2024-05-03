@@ -1,36 +1,32 @@
-@model SchedulingWebApp.Data.Model.Major
+
+@model IEnumerable<SchedulingWebApp.Data.Model.Major>
 
 @{
     Layout =null;
 }
+@{
 
-    <div class="modal fade" id="majorsModal" asp-page-handler="MajorsPartial" tabindex="-1" role="dialog">
+}
+
+    <div class="modal fade" id="majorsModal" asp-page-handler="MajorsPartial" tabindex="-1" role="dialog" area-labelledby="pickMajor">
         <div class="partialBody modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title">Select Major:</h1>
-                    <button id="majorsClosePopUp" type="button" class="closeModal" data-dismiss="modal">&times;</button>
+                    <button type="button" id="majorsClosePopUpBtn" class="close" data-dismiss="modal" area-label="Close">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p>Please select all courses that you have already taken and/or have credits for:</p>
-                    <form asp-asp-page-handler="MajorsPartial" class="containSelect">
-                        <div class="majors">
-                            <ul>
-                                @* @foreach (var major in Model.){
-                                    <li>
-                                        <input type="checkbox" id="@Model.Courses<course>.CourseCode" asp-for="@Model.Taken" value="@Model.Taken" checked="@Model.Taken" />
-                                        <label for="@Model.Courses<course>.CourseCode">@Model.Course.CourseCode , @Model.Course.Name </label>
-                                    </li>
-                                } *@
-                            </ul>
-                            <p>This is working! Major is not null</p>
-                        </div>
-                        
+                    <p>Please select your major below:</p>
+                    <form asp-asp-page-handler="MajorsPartial" class="containSelect" method="post">
+                        <select id="major" name="major">
+                            @foreach (var elem in Model){
+                                <option asp-for="Major" value="@elem">@elem.major</option>
+                            }
+                        </select>
                     </form>
-                    
                 </div>
                 <div class="modal-footer">
-                    <button id="coursesSave" class="btn" data-save="modal">Save</button>
+                    <button id="majorSave" class="btn-save" data-save="modal">Save</button>
                 </div>
             </div>
         </div>
