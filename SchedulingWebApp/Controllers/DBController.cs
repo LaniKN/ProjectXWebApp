@@ -174,6 +174,13 @@ public class DBController : DatabaseConnection {
 		return pairs;
 	}
 
+	private List<ViewModel> generateViewModelTable(List<Major> majors){
+		List<ViewModel> viewModel = new ();
+		foreach (var element in majors) {
+			majors.ToList().ForEach(m => viewModel.Add(new ViewModel {majorId = m.Id}));
+		}
+		return viewModel;
+	}
 
 	private List<CourseMatch> generatePrereqStuff(List<Course> courses) {
 		
@@ -190,6 +197,7 @@ public class DBController : DatabaseConnection {
 		var courseJson = ReadJSON<Course>(ReadInFile("courseData.js"));
 		var majorJson = ReadJSON<Major>(ReadInFile("majorData.js"));
 		var generatedPairs = generatePairsTable(majorJson,courseJson);
+		var generateViewModel = generateViewModelTable(majorJson);
 		await settingUp.ContinueWith((finishSetup) => {
 		ClearAllTables();
 		try {

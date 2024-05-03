@@ -1,4 +1,4 @@
-@model IndexModel
+@model IEnumerable<SchedulingWebApp.Data.Model.Course>
 
 @{
     Layout =null;
@@ -12,28 +12,26 @@
                     <button id="coursesClosePopUp" type="button" class="closeModal" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p>Please select all courses that you have already taken and/or have credits for:</p>
-                    <form asp-asp-page-handler="CoursesPartial" class="containSelect">
-                        @* @if (@Model.returningCourses() != null){
-                            <div class="courses">
-                                <ul>
-                                     @foreach (var course in Model.Courses){
-                                        <li>
-                                            <input type="checkbox" id="@Model.Courses<course>.CourseCode" asp-for="@Model.Taken" value="@Model.Taken" checked="@Model.Taken" />
-                                            <label for="@Model.Courses<course>.CourseCode">@Model.Course.CourseCode , @Model.Course.Name </label>
-                                        </li>
-                                    } 
-                                </ul>
-                                <p>This is working! Course is not null</p>
-                            </div>
-                        } else {
-                            <p>Uh Oh! You haven't selected your major! Please select a major!</p>
-                        }; *@
-                    </form>
-                    
+                    @if (Model.Count() != 0){
+                        <p>Please select all courses that you have already taken and/or have credits for:</p>
+                        <form asp-asp-page-handler="CoursesPartial" class="containSelect" action="post">
+                            <ul id="courses" name="courses">
+                                @foreach(var elem in Model){
+                                    <label>
+                                        <input type="checkbox" value="@elem"/>
+                                        @elem.CourseCode @elem.CourseName 
+                                    </label>
+                                }
+                            </ul> 
+                        </form>
+                    } else {
+                        <p>Uh oh, you haven't selected a major!</p>
+                    }
                 </div>
                 <div class="modal-footer">
-                    <button id="coursesSave" class="btn" data-save="modal">Save</button>
+                    @if (Model != null){
+                        <button id="coursesSave" class="btn" data-save="modal">Save</button>
+                    }
                 </div>
             </div>
         </div>

@@ -163,6 +163,33 @@ button.accept-policy {
   width:50vw;
 }
 
+ul {
+  list-style-type: none;
+}
+
+label {
+  text-wrap:wrap;
+  text-overflow:inherit;
+}
+
+.btn-save {
+  padding:15px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size:18px;
+}
+
+select {
+  width:100px;
+  padding:10px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size:24px;
+}
+
+option {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size:18px;
+}
+
 /* Home page CSS  */
 
 *{

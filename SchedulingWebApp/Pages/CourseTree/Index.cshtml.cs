@@ -11,6 +11,14 @@ public class IndexModel(ILogger<IndexModel> logger, DatabaseAPI databaseAPI) : P
 {
 	private readonly ILogger<IndexModel> _logger = logger;
 	private readonly DatabaseAPI _api = databaseAPI;
+	
+	private readonly static List<Course> courses = new List<Course>();
+    //private readonly static List<Major> majors = new List<Major>();
+
+    private static List<Major> major = new List<Major>();
+
+//put saved model with major picked
+    private static ViewModel viewModel = new ViewModel();
 		
 	public Course returnCourse(int courseID) {
 		return _api.FetchCourse(courseID) ?? new Course();

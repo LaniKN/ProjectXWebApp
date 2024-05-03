@@ -25,8 +25,6 @@ public class DatabaseAPI : DatabaseConnection {
 		return _cachedmajors;
 	}
 
-	
-
 	public string toJSON<T>(List<T> input) {
 		return JsonSerializer.Serialize<List<T>>(input);
 	}
