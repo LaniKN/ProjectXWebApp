@@ -21,6 +21,11 @@ public class DatabaseAPI : DatabaseConnection {
 		_cachedmajors = FetchMajors();
 		_courseCodeLookUP = _connection.Query<string>(@"SELECT CourseCode FROM Course").ToHashSet();
 	}
+	public List<Major> getCachedMajors(){
+		return _cachedmajors;
+	}
+
+	
 
 	public string toJSON<T>(List<T> input) {
 		return JsonSerializer.Serialize<List<T>>(input);
@@ -31,6 +36,8 @@ public class DatabaseAPI : DatabaseConnection {
 		SELECT *
 		FROM Major").ToList();
 	}
+
+	
 
 	// using a dictionary due to value key-pair which allows for faster lookup using the key
 	public async Task<Dictionary<int,string>> getMajorsAsync() {
@@ -53,8 +60,9 @@ public class DatabaseAPI : DatabaseConnection {
 	public Course FetchReqsSpecial(string fuckedString) =>
 		_connection.QueryFirst<Course>(@"SELECT * FROM Course WHERE CourseCode = @scrubbedString",new { scrubbedString = String.Concat(fuckedString.Where(char.IsLetterOrDigit))});
 	
+	// will use for coures modal
 	public List<int> FetchCoursesFromMajor(int majorID) =>
-	  _connection.Query<int>(@"SELECT MajorId FROM Pairs WHERE MajorID = @id", new {id = majorID}).ToList();
+	  _connection.Query<int>(@"SELECT CourseID FROM Pairs WHERE MajorID = @id", new {id = majorID}).ToList();
 
 
 	public void fetchCoursePreReq(string courseCode) {

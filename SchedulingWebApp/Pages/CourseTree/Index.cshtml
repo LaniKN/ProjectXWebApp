@@ -1,60 +1,63 @@
-@page
+@page "{handler?}"
 @model IndexModel
 @{
-    ViewData[""] = "Course Tree";
+    ViewData["Title"] = "Course Tree";
 }
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-ul, #myUL {
-  list-style-type: none;
-}
+  <title>@ViewData["Title"]</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  ul, #myUL {
+    list-style-type: none;
+  }
 
-#myUL {
-  margin: 0;
-  padding: 0;
-}
+  #myUL {
+    margin: 0;
+    padding: 0;
+  }
 
-.box {
-  cursor: pointer;
-  -webkit-user-select: none; /* Safari 3.1+ */
-  -moz-user-select: none; /* Firefox 2+ */
-  -ms-user-select: none; /* IE 10+ */
-  user-select: none;
-}
+  .box {
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none;
+    font-size:32px;
+    font-weight:2px;
+  }
 
-.box::before {
-  content: "\2610";
-  color: black;
-  display: inline-block;
-  margin-right: 6px;
-  font-weight: bold;
-}
+  .box::before {
+    content: "\2610";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+    font-weight: bold;
+  }
 
-.check-box::before {
-  content: "\2611"; 
-  color: dodgerblue;
-}
+  .check-box::before {
+    content: "\2611"; 
+    color: dodgerblue;
+  }
 
-.nested {
-  display: none;
-}
+  .nested {
+    display: none;
+  }
 
-.active {
-  display: block;
-}
+  .active {
+    display: block;
+  }
 
-.treeContent {
-  width: 95%;
-  align-self:flex-start;
-  flex-direction:column;
-  border-style:solid;
-  border-color:transparent;
-  border-radius:5px;
-  background-color: #f9f6f7;
-}
+  .treeContent {
+    width: 95%;
+    align-self:flex-start;
+    flex-direction:column;
+    border-style:solid;
+    border-color:transparent;
+    border-radius:5px;
+    background-color: #f9f6f7;
+  }
 
-</style>
+  </style>
 </head>
 <body>
   <div>
@@ -64,8 +67,8 @@ ul, #myUL {
     <div class='treeContent'>
       <div class="main-contant">
         <main>
-          <h1>This tree will show you what classes you can take.</h1>
-          <p>Click on the box(es) to open or close the tree branches.</p>
+          <h2>This tree will show you what classes you can take.</h2>
+          <h2>Click on the box(es) to open or close the tree branches.</h2>
           <ul id="myUL">
           @* course.CourseID *@
           @* @foreach (var course in Model.CourseViewModel.Courses) *@
@@ -74,10 +77,10 @@ ul, #myUL {
                 <ul class="nested">
                   <li>@Model.returnCourse(24914).CourseDescription</li>
                     @foreach(var outerListIterator in @Model.returnCourseReqs("BIO2730")){
-                    @foreach(var innerListIterator in outerListIterator) {
-                  <li>PreReqs; @innerListIterator @Model.returnCourse(innerListIterator).CourseName</li>
-              }
-            }
+                      @foreach(var innerListIterator in outerListIterator) {
+                        <li>PreReqs; @innerListIterator @Model.returnCourse(innerListIterator).CourseName</li>
+                      }
+                    }
         </ul>
         </li>
   </ul>

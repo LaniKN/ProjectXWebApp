@@ -1,4 +1,4 @@
-@model SchedulingWebApp.Data.Model.CourseViewModel
+@model IndexModel
 
 @{
     Layout =null;
@@ -14,21 +14,21 @@
                 <div class="modal-body">
                     <p>Please select all courses that you have already taken and/or have credits for:</p>
                     <form asp-asp-page-handler="CoursesPartial" class="containSelect">
-                        @if (Model.Courses != null){
+                        @* @if (@Model.returningCourses() != null){
                             <div class="courses">
                                 <ul>
-                                    @* @foreach (var course in Model.Courses){
+                                     @foreach (var course in Model.Courses){
                                         <li>
                                             <input type="checkbox" id="@Model.Courses<course>.CourseCode" asp-for="@Model.Taken" value="@Model.Taken" checked="@Model.Taken" />
                                             <label for="@Model.Courses<course>.CourseCode">@Model.Course.CourseCode , @Model.Course.Name </label>
                                         </li>
-                                    } *@
+                                    } 
                                 </ul>
                                 <p>This is working! Course is not null</p>
                             </div>
                         } else {
                             <p>Uh Oh! You haven't selected your major! Please select a major!</p>
-                        };
+                        }; *@
                     </form>
                     
                 </div>

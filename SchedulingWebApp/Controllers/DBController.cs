@@ -173,6 +173,8 @@ public class DBController : DatabaseConnection {
 		}
 		return pairs;
 	}
+
+
 	private List<CourseMatch> generatePrereqStuff(List<Course> courses) {
 		
 		foreach(var element in courses) {

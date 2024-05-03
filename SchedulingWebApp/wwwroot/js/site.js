@@ -22,8 +22,9 @@ $(function() {
 
     $('#majorsPopUpBtn').click(function (event) {
         var url=$(this).data('url');
-        
+        console.log({url});
         $.get(url).done(function (data){
+            console.log({data});
             placeHolderElemMajors.html(data);
             placeHolderElemMajors.append(data).find('#majorsModal').modal('show');
         });
