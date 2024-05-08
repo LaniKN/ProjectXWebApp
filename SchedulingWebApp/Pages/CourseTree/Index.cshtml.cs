@@ -33,6 +33,20 @@ public class IndexModel(ILogger<IndexModel> logger, DatabaseAPI databaseAPI) : P
 		return (test.Result)[1];
 	}
 
+    public PartialViewResult CoursesUpdate() {
+        _logger.LogInformation("In Courses Update partial");
+        return new PartialViewResult
+        {
+            ViewName = "./_IndexPartial",
+            ViewData = new ViewDataDictionary<List<Course>>(ViewData, courses),
+        };
+    }
+
+
+
+
+
+
 	//modal stuff below here
 
      private static List<Course>? courses = new List<Course>();
@@ -120,6 +134,9 @@ public class IndexModel(ILogger<IndexModel> logger, DatabaseAPI databaseAPI) : P
             int codeInt = Int32.Parse(code ?? "0");
             codesInt.Add(codeInt);
         }
+        CoursesUpdate();
     }
+    
+
 }
 

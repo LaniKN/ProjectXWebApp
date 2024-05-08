@@ -69,21 +69,8 @@
         <main>
           <h2>This tree will show you what classes you can take.</h2>
           <h2>Click on the box(es) to open or close the tree branches.</h2>
-          <ul id="myUL">
-          @* course.CourseID *@
-          @* @foreach (var course in Model.CourseViewModel.Courses) *@
-            <li>
-              <span class="box">@Model.returnCourse(24914).CourseCode @Model.returnCourse(24914).CourseName</span>
-                <ul class="nested">
-                  <li>@Model.returnCourse(24914).CourseDescription</li>
-                    @foreach(var outerListIterator in @Model.returnCourseReqs("BIO2730")){
-                      @foreach(var innerListIterator in outerListIterator) {
-                        <li>PreReqs; @innerListIterator @Model.returnCourse(innerListIterator).CourseName</li>
-                      }
-                    }
-        </ul>
-        </li>
-  </ul>
+          <div id="courseSection">
+          </div>
         </main>
       </div>
     </div>

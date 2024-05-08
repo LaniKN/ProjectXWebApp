@@ -1,0 +1,19 @@
+@model IndexModel
+
+
+<ul id="myUL">
+    @* course.CourseID *@
+    @foreach (int course in Model.getCourses()) {
+    <li>
+        <span class="box">@Model.returnCourse(course).CourseCode @Model.returnCourse(course).CourseName</span>
+        <ul class="nested">
+            <li>@Model.returnCourse(course).CourseDescription</li>
+            @foreach(var outerListIterator in @Model.returnCourseReqs("BIO2730")){
+                @foreach(var innerListIterator in outerListIterator) {
+                <li>PreReqs; @innerListIterator @Model.returnCourse(innerListIterator).CourseName</li>
+                }
+            }
+        </ul>
+        </li>
+    }
+</ul>
