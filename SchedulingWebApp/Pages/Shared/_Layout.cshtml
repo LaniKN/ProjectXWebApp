@@ -39,12 +39,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="../CourseTree/Index">Course Tree</a>
                         </li>
+                        @if (ViewData["Title"] == "Course Tree"){
                         <li class="nav-item">
                             <button id="majorsPopUpBtn" class="nav-btn" data-toggle="ajax-modal" data-url="@Url.Page("Index", "MajorsPartial")">Major</button>
                         </li>
                         <li class="nav-item">
                             <button id="coursesPopUpBtn" class="nav-btn" data-toggle="ajax-modal" data-url="@Url.Page("Index", "CoursesPartial")">Courses</button>
                         </li>
+                        }
                         @* <li class="nav-item">
                             <a class="nav-link" href="../Privacy">Privacy</a>
                         </li> *@

@@ -5,7 +5,6 @@
     Layout =null;
 }
 
-
     <div class="modal fade" id="majorsModal" asp-page-handler="MajorsPartial" tabindex="-1" role="dialog" area-labelledby="pickMajor">
         <div class="partialBody modal-dialog" role="document">
             <div class="modal-content">
@@ -15,17 +14,27 @@
                 </div>
                 <div class="modal-body">
                     <p>Please select your major below:</p>
-                    <form asp-asp-page-handler="MajorsPartial" class="containSelect" method="post">
+                    @* <form asp-page-handler="MajorsPartial" class="containSelect" method="post"> *@
+                    <form method="post" class="containSelect" asp-page-handler="SubmitMajor">
                         <select id="major" name="major">
-                            @foreach (var elem in Model){
-                                <option asp-for="Major" value="@Model.">@elem.major</option>
+                            @foreach (var major in Model){
+                                <option type="text" value="@major.Id" name="@major.Id">@major.major</option>
                             }
+                            
+                            @* @foreach (var view in Model){
+                                @foreach (var major in view){
+                                <option type="text" value="@major.majors.Id" name="@major.Id">@major.major</option>
+                            }} *@
                         </select>
+                        <div class="modal-footer">
+                            <input class ="btn-save" type="submit" value="Send"/>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button id="majorSave" class="btn-save" data-save="modal" type="submit" value="submit" asp-page-handler="SubmitMajor">Save</button>
+                    @* <button id="majorSave" class="btn-save" data-save="modal" type="submit" value="submit" asp-page-handler="SubmitMajor">Save</button> *@
                 </div>
             </div>
         </div>
     </div>
+

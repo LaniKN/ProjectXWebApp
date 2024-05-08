@@ -15,43 +15,45 @@ public class IndexModel(ILogger<IndexModel> logger, DatabaseAPI databaseAPI) : P
     private readonly ILogger<IndexModel> _logger = logger;
 	private readonly DatabaseAPI _api = databaseAPI;
 
-    private readonly static List<Course> course = new List<Course>();
-    //private readonly static List<Major> majors = new List<Major>();
+    //private static ViewModel viewModel = new ViewModel();
 
+    private static List<Course>? courses = new List<Course>();
     private static List<Major> major = new List<Major>();
+    public static List<int> codesInt = new List<int>();
 
 //put saved model with major picked
-    private static ViewModel viewModel = new ViewModel();
+    
 
     public void fillNewMajorModel() {
         foreach(Major elem in _api.getCachedMajors()) {
-            major.Add(elem);
+            if(!major.Contains(elem)){
+                major.Add(elem);
+            }
         }
     }
 
-    public void fillCoursesList(Major major) {
-        List<int> courseIds = _api.FetchCoursesFromMajor(major.Id);
+    public void fillCoursesList(int majorId) {
+        List<int> courseIds = _api.FetchCoursesFromMajor(majorId);
 
         foreach (int elem in courseIds){
-            course.Add(_api.FetchCourse(elem));
+            if(!courses.Contains(_api.FetchCourse(elem))){
+            courses.Add(_api.FetchCourse(elem));
+            }
         }
     }
 
-
-    public void OnGet() 
-    {
-
-    }
 
     public PartialViewResult OnGetCoursesPartial() {
         return new PartialViewResult
         {
             ViewName = "_CoursesPartial",
-            ViewData = new ViewDataDictionary<List<Course>>(ViewData, course)
+            ViewData = new ViewDataDictionary<List<Course>>(ViewData, courses),
         };
     }
 
+
 	public PartialViewResult OnGetMajorsPartial() {
+        major = new List<Major>();
         fillNewMajorModel();
         return new PartialViewResult
         {
@@ -60,10 +62,33 @@ public class IndexModel(ILogger<IndexModel> logger, DatabaseAPI databaseAPI) : P
         };
     }
     
-
-    public void OnGetSubmitMajor(Major model) {
-        Console.WriteLine("In get submit major");
-        fillCoursesList(model);
-    }
     
+//make it a fucking cookie and find that in a cookie.
+//2 am, May-8: didn't need a cookie :)
+
+    public void OnPostSubmitMajor() {
+        string id = Request.Form["major"];
+        int major = Int32.Parse(id ?? "0");
+        
+        // _logger.LogInformation("In post submit major. " + major);
+        // _logger.LogInformation("In post submit major. ID: " + id);
+        courses = new List<Course>();
+        fillCoursesList(major);
+    }
+
+    
+    public void OnPostSubmitCourses() {
+        string codeString = Request.Form["selected"];
+        List<string> codesString = codeString.Split(new char[] { ',' }).ToList();
+        _logger.LogInformation("In Post Courses " + codeString);
+        _logger.LogInformation("List of codes " + codesString.Count());
+
+        foreach (var code in codesString) {
+            int codeInt = Int32.Parse(code ?? "0");
+            codesInt.Add(codeInt);
+        }
+
+
+    }
+
 }

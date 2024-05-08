@@ -54,20 +54,32 @@ $(function() {
 
     //for posts
     //Major Post
-    placeHolderElemMajors.on('click', '[data-save="majorModal"]', function (event){
-        event.preventDefault();
-        var form = $(this).parents('.modal').find('form');
-        var actionUrl = form.attr('method');
-        var dataToSend = form.serialize();
-        console.log("Form: " + form);
-        console.log("actUrl: " + actionUrl);
-        console.log("dataSend: " + dataToSend);
+    
+    placeHolderElemMajors.on('click', '[data-save="modal"]', function (event){
 
-        $.post(actionUrl, dataToSend).done(function (data) {
-            console.log("posted to:" + actionUrl + "\n" +dataToSend);
-            placeHolderElemMajors.find('#majorsModal').modal('hide');
-        });
+        
 
+
+        // event.preventDefault();
+        // var form = $(this).parents('.modal').find('form');
+        // // var data = 
+        // var dataToSend = 2;
+        // //console.log(form.data + "\n" + FormData.toString());
+
+        // // $.cookie ="major=" + dataToSend
+        
+        
+        // var actionUrl = form.attr('action');
+        
+        // console.log("Form: " + form);
+        // console.log("actUrl: " + actionUrl);
+        // console.log("dataSend: " + dataToSend);
+
+        // $.post(actionUrl, dataToSend).done(function (data) {
+        //     console.log("posted to:" + actionUrl + "\n" +dataToSend);
+        //     placeHolderElemMajors.find('#majorsModal').modal('hide');
+        // });
+        
     });
 
 

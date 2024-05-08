@@ -14,25 +14,28 @@
                 <div class="modal-body">
                     @if (Model != null){
                         <p>Please select all courses that you have already taken and/or have credits for:</p>
-                        <form asp-asp-page-handler="CoursesPartial" class="containSelect" action="post">
+                        <form method="post" class="containSelect" asp-page-handler="SubmitCourses">
                             <ul id="courses" name="courses">
                                 @foreach(var elem in Model){
                                     <label>
-                                        <input type="checkbox" value="@elem"/>
+                                        <input type="checkbox" name="selected" value="@elem.CourseID"/>
                                         @elem.CourseCode @elem.CourseName 
                                     </label>
                                 }
                             </ul> 
+                            <div class="modal-footer">
+                                <input class ="btn-save" type="submit" value="Send"/>
+                            </div>
                         </form>
                     } else {
                         <p>Uh oh, you haven't selected a major!</p>
                     }
                 </div>
-                <div class="modal-footer">
+                @* <div class="modal-footer">
                     @if (Model != null){
                         <button id="coursesSave" class="btn" data-save="modal">Save</button>
                     }
-                </div>
+                </div> *@
             </div>
         </div>
     </div>
